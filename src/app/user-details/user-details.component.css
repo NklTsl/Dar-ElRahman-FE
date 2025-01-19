@@ -1,9 +1,0 @@
-.user-details {
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: space-between;
-}
-
-.user-details .section {
-  margin: 0 10px;
-}

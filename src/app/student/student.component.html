@@ -1,0 +1,105 @@
+<h2>تفاصيل الطالب فى الكتاب</h2>
+<div *ngIf="rowSelected" class="d-flex justify-content-between">
+  <!-- User Details Section -->
+
+  <!-- user-details.component.html -->
+
+  <div class="card">
+    <div class="card-body">
+      <h3 class="card-title">تفاصيل الطالب</h3>
+      <p class="d-flex justify-content-between">
+        <strong>رقم المسلسل:</strong> {{ rowSelected.serial }}
+      </p>
+      <p class="d-flex justify-content-between">
+        <strong>الاسم رباعي:</strong> {{ rowSelected.name }}
+      </p>
+      <p class="d-flex justify-content-between">
+        <strong>الرقم القومي:</strong> {{ rowSelected.nationalId }}
+      </p>
+      <p class="d-flex justify-content-between">
+        <strong>الحالة:</strong>
+        <span class="green-status">{{ rowSelected.status }}</span>
+      </p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <h3 class="card-title">تفاصيل التواصل</h3>
+      <p class="card-text d-flex justify-content-between">
+        <strong>تليفون 1:</strong> 01024261189
+      </p>
+      <p class="card-text d-flex justify-content-between">
+        <strong>تليفون 2:</strong> 0566012843
+      </p>
+      <p class="card-text d-flex justify-content-between">
+        <strong>العنوان:</strong> الفيوم - مركز الفيوم - قرية دسيا
+      </p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <h3 class="card-title">تفاصيل أخرى</h3>
+      <p class="card-text d-flex justify-content-between">
+        <strong>الحالة الاجتماعية:</strong> يتيم
+      </p>
+      <p class="d-flex justify-content-between">
+        <strong>الفصل:</strong> {{ rowSelected.class }}
+      </p>
+      <p class="card-text d-flex justify-content-between">
+        <strong>تاريخ الالتحاق:</strong> 20/5/2024
+      </p>
+      <p class="card-text d-flex justify-content-between">
+        <strong>تاريخ الميلاد:</strong> 26/1/1996
+      </p>
+      <p class="d-flex justify-content-between">
+        <strong>الفترة:</strong> {{ rowSelected.period }}
+      </p>
+    </div>
+  </div>
+</div>
+<div class="table-container">
+  <table class="custom-table">
+    <thead class="thead-dark">
+      <tr>
+        <th>رقم المسلسل</th>
+        <th>الاسم رباعي</th>
+        <th>الرقم القومي</th>
+        <th>الحالة</th>
+        <th>الفترة</th>
+        <th>الفصل</th>
+        <th>عرض التفاصيل</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of data" (click)="selectRow(row)">
+        <td>{{ row.serial }}</td>
+        <td>{{ row.name }}</td>
+        <td>{{ row.nationalId }}</td>
+        <td>
+          <span
+            class="badge"
+            [ngClass]="{
+              'green-status': row.status === 'متصل',
+              'danger-status': row.status === 'منقطع'
+            }"
+            >{{ row.status }}</span
+          >
+        </td>
+        <td>{{ row.period }}</td>
+        <td>{{ row.class }}</td>
+        <td>
+          <!-- <button class="btn-sm details-button" (click)="selectRow(row)">
+          التفاصيل
+        </button> -->
+
+          <button class="btn-sm details-button" (click)="selectRow(row)">
+            <i class="fa fa-eye"></i>
+            <span>التفاصيل</span>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,92 @@
+.card {
+  margin-bottom: 20px;
+  width: 32%;
+  border-radius: 20px;
+  border-style: none;
+}
+
+.green-status {
+  background-color: #e0f5ee;
+  color: #0eb17f;
+  border-radius: 10%;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.danger-status {
+  background-color: #f5e0ed;
+  color: #b10e3a;
+  border-radius: 10%;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.details-button {
+  background-color: #4f67f5; /* Light blue background */
+  color: #ffffff; /* White text */
+  border: none;
+  border-radius: 8px; /* Rounded corners */
+  padding: 8px 16px; /* Button padding */
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Space between text and icon */
+  font-size: 14px; /* Font size */
+  text-align: center;
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease; /* Smooth hover transition */
+}
+
+.details-button i {
+  font-size: 16px; /* Icon size */
+}
+
+.details-button:hover {
+  background-color: #3e54cc; /* Darker blue on hover */
+}
+
+.table-container {
+  padding: 16px;
+  background-color: #f5f6f8; /* Light background for the container */
+  border-radius: 8px; /* Rounded corners */
+  border: 1px solid #e0e0e0; /* Subtle border for the container */
+}
+
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: right; /* Right-to-left alignment for Arabic */
+}
+
+.custom-table thead th {
+  background-color: #f5f6f8; /* Light gray background for the header */
+  color: #555555; /* Text color */
+  font-weight: bold;
+  padding: 12px;
+  border-bottom: 2px solid #e0e0e0; /* Header bottom border */
+}
+
+.custom-table tbody td {
+  padding: 12px;
+  border-bottom: 1px solid #e0e0e0; /* Subtle row separator */
+  color: #333333; /* Text color */
+}
+
+.custom-table tbody tr {
+  background-color: #ffffff; /* Slightly lighter background for even rows */
+}
+
+.details-button {
+  background-color: #4f67f5; /* Blue background */
+  color: white;
+  border: none;
+  border-radius: 8px; /* Rounded corners */
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.details-button:hover {
+  background-color: #3e54cc; /* Darker blue on hover */
+}
