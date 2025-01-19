@@ -1,2 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
+body {
+  direction: rtl;
+  text-align: right;
+  font-family: "Helvetica Neue W23 for SKY"; /* Or any preferred font */
+}
+
+/* styles.css */
+.card {
+  margin-bottom: 20px;
+}
+
+.table {
+  margin-top: 20px;
+}
+
+.list-group-item {
+  text-align: right;
+}
+
+.pagination {
+  margin-top: 20px;
+}

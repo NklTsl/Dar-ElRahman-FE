@@ -1,158 +1,76 @@
-<div class="container text-center">
+<div class="container-fluid">
+  <app-header></app-header>
   <div class="row">
-    <div class="col my-5">
-      <div class="card" style="width: 18rem">
-        <img
-          src="/assets/imgs/quran.png"
-          class="card-img-top"
-          alt="/assets/imgs/quran.png"
-        />
-        <div class="card-body">
-          <h5 class="card-title">الغياب</h5>
-          <p class="card-text">أخذ الغيال للطلبة ومراجته</p>
-          <a href="#" class="btn btn-primary">دخول</a>
-        </div>
-      </div>
+    <div class="col-md-3">
+      <app-sidebar></app-sidebar>
     </div>
-    <div class="col my-5">
-      <div class="card" style="width: 18rem">
-        <img
-          src="/assets/imgs/quran.png"
-          class="card-img-top"
-          alt="/assets/imgs/quran.png"
-        />
-        <div class="card-body">
-          <h5 class="card-title">الغياب</h5>
-          <p class="card-text">أخذ الغيال للطلبة ومراجته</p>
-          <a href="#" class="btn btn-primary">دخول</a>
+    <div class="col-md-9">
+      <!-- User Details Section -->
+
+      <!-- user-details.component.html -->
+      <div *ngIf="selectedUser" class="row">
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">تفاصيل الطالب</h5>
+              <p><strong>رقم المسلسل:</strong> {{ selectedUser.serial }}</p>
+              <p><strong>الاسم رباعي:</strong> {{ selectedUser.name }}</p>
+              <p>
+                <strong>الرقم القومي:</strong> {{ selectedUser.nationalId }}
+              </p>
+              <p><strong>الحالة:</strong> {{ selectedUser.status }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">تفاصيل التواصل</h5>
+              <p class="card-text">تليفون 1: 01024261189</p>
+              <p class="card-text">تليفون 2: 0566012843</p>
+              <p class="card-text">العنوان: الفيوم - مركز الفيوم - قرية دسيا</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">تفاصيل أخرى</h5>
+              <p class="card-text">الحالة الاجتماعية: يتم</p>
+              <p><strong>الفصل:</strong> {{ selectedUser.class }}</p>
+              <p class="card-text">تاريخ الالتحاق: 20/5/2024</p>
+              <p class="card-text">تاريخ الميلاد: 26/1/1996</p>
+              <p><strong>الفترة:</strong> {{ selectedUser.period }}</p>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col my-5">
-      <div class="card" style="width: 18rem">
-        <img
-          src="/assets/imgs/quran.png"
-          class="card-img-top"
-          alt="/assets/imgs/quran.png"
-        />
-        <div class="card-body">
-          <h5 class="card-title">الغياب</h5>
-          <p class="card-text">أخذ الغيال للطلبة ومراجته</p>
-          <a href="#" class="btn btn-primary">دخول</a>
-        </div>
-      </div>
-    </div>
-    <div class="col my-5">
-      <div class="card" style="width: 18rem">
-        <img
-          src="/assets/imgs/quran.png"
-          class="card-img-top"
-          alt="/assets/imgs/quran.png"
-        />
-        <div class="card-body">
-          <h5 class="card-title">الغياب</h5>
-          <p class="card-text">أخذ الغيال للطلبة ومراجته</p>
-          <a href="#" class="btn btn-primary">دخول</a>
-        </div>
-      </div>
-    </div>
-    <div class="col my-5">
-      <div class="card" style="width: 18rem">
-        <img
-          src="/assets/imgs/quran.png"
-          class="card-img-top"
-          alt="/assets/imgs/quran.png"
-        />
-        <div class="card-body">
-          <h5 class="card-title">الغياب</h5>
-          <p class="card-text">أخذ الغيال للطلبة ومراجته</p>
-          <a href="#" class="btn btn-primary">دخول</a>
-        </div>
-      </div>
-    </div>
-    <div class="col my-5">
-      <div class="card" style="width: 18rem">
-        <img
-          src="/assets/imgs/quran.png"
-          class="card-img-top"
-          alt="/assets/imgs/quran.png"
-        />
-        <div class="card-body">
-          <h5 class="card-title">الغياب</h5>
-          <p class="card-text">أخذ الغيال للطلبة ومراجته</p>
-          <a href="#" class="btn btn-primary">دخول</a>
-        </div>
-      </div>
-    </div>
-    <div class="col my-5">
-      <div class="card" style="width: 18rem">
-        <img
-          src="/assets/imgs/quran.png"
-          class="card-img-top"
-          alt="/assets/imgs/quran.png"
-        />
-        <div class="card-body">
-          <h5 class="card-title">الغياب</h5>
-          <p class="card-text">أخذ الغيال للطلبة ومراجته</p>
-          <a href="#" class="btn btn-primary">دخول</a>
-        </div>
-      </div>
-    </div>
-    <div class="col my-5">
-      <div class="card" style="width: 18rem">
-        <img
-          src="/assets/imgs/quran.png"
-          class="card-img-top"
-          alt="/assets/imgs/quran.png"
-        />
-        <div class="card-body">
-          <h5 class="card-title">الغياب</h5>
-          <p class="card-text">أخذ الغيال للطلبة ومراجته</p>
-          <a href="#" class="btn btn-primary">دخول</a>
-        </div>
-      </div>
-    </div>
-    <div class="col my-5">
-      <div class="card" style="width: 18rem">
-        <img
-          src="/assets/imgs/quran.png"
-          class="card-img-top"
-          alt="/assets/imgs/quran.png"
-        />
-        <div class="card-body">
-          <h5 class="card-title">الغياب</h5>
-          <p class="card-text">أخذ الغيال للطلبة ومراجته</p>
-          <a href="#" class="btn btn-primary">دخول</a>
-        </div>
-      </div>
-    </div>
-    <div class="col my-5">
-      <div class="card" style="width: 18rem">
-        <img
-          src="/assets/imgs/quran.png"
-          class="card-img-top"
-          alt="/assets/imgs/quran.png"
-        />
-        <div class="card-body">
-          <h5 class="card-title">الغياب</h5>
-          <p class="card-text">أخذ الغيال للطلبة ومراجته</p>
-          <a href="#" class="btn btn-primary">دخول</a>
-        </div>
-      </div>
-    </div>
-    <div class="col my-5">
-      <div class="card" style="width: 18rem">
-        <img
-          src="/assets/imgs/quran.png"
-          class="card-img-top"
-          alt="/assets/imgs/quran.png"
-        />
-        <div class="card-body">
-          <h5 class="card-title">الغياب</h5>
-          <p class="card-text">أخذ الغيال للطلبة ومراجته</p>
-          <a href="#" class="btn btn-primary">دخول</a>
-        </div>
-      </div>
+
+      <app-data-table
+        [paginatedData]="paginatedData"
+        (rowSelected)="handleRowSelection($event)"
+      ></app-data-table>
+
+      <app-pagination
+        [currentPage]="currentPage"
+        [totalPages]="totalPages"
+        (pageChange)="handlePageChange($event)"
+      ></app-pagination>
     </div>
   </div>
 </div>
+
+<!-- 
+<div class="container">
+  <app-data-table
+    [paginatedData]="paginatedData"
+    (rowSelected)="handleRowSelection($event)"
+  ></app-data-table>
+
+  <app-pagination
+    [currentPage]="currentPage"
+    [totalPages]="totalPages"
+    (pageChange)="handlePageChange($event)"
+  ></app-pagination>
+</div>
+ -->
