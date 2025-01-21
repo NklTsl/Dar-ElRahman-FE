@@ -1,10 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
 @import "bootstrap/dist/css/bootstrap.css";
+
+
+//Colors
+@import "styles/colors/color_variables";
+@import "styles/colors/colors_mixin";
+
+// Cairo Font
+@import "styles/fonts/cairo.scss";
+
+:root {
+  --font-family: Cairo;
+}
+
+
 body {
   direction: rtl;
   text-align: right;
-  font-family: "Helvetica Neue W23 for SKY"; /* Or any preferred font */
-  background-color: #f6f6f8;
+  font-family: var(--font-family);
+  background-color: var(--color-white);
 }
 
 /* styles.css */

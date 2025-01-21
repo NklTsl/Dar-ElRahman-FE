@@ -1,5 +1,6 @@
 <h2>تفاصيل الطالب فى الكتاب</h2>
-<div *ngIf="rowSelected" class="d-flex justify-content-between">
+@if(rowSelected){
+<div class="d-flex justify-content-between">
   <!-- User Details Section -->
 
   <!-- user-details.component.html -->
@@ -59,6 +60,8 @@
     </div>
   </div>
 </div>
+}
+
 <div class="table-container">
   <table class="custom-table">
     <thead class="thead-dark">
@@ -73,33 +76,36 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let row of data" (click)="selectRow(row)">
-        <td>{{ row.serial }}</td>
-        <td>{{ row.name }}</td>
-        <td>{{ row.nationalId }}</td>
-        <td>
-          <span
-            class="badge"
-            [ngClass]="{
-              'green-status': row.status === 'متصل',
-              'danger-status': row.status === 'منقطع'
-            }"
-            >{{ row.status }}</span
-          >
-        </td>
-        <td>{{ row.period }}</td>
-        <td>{{ row.class }}</td>
-        <td>
-          <!-- <button class="btn-sm details-button" (click)="selectRow(row)">
-          التفاصيل
-        </button> -->
+      @for(row of data; track row.serial;){
+        <tr (click)="selectRow(row)">
+          <td>{{ row.serial }}</td>
+          <td>{{ row.name }}</td>
+          <td>{{ row.nationalId }}</td>
+          <td>
+            <span
+              class="badge"
+              [ngClass]="{
+                'green-status': row.status === 'متصل',
+                'danger-status': row.status === 'منقطع'
+              }"
+              >{{ row.status }}</span
+            >
+          </td>
+          <td>{{ row.period }}</td>
+          <td>{{ row.class }}</td>
+          <td>
+            <!-- <button class="btn-sm details-button" (click)="selectRow(row)">
+            التفاصيل
+          </button> -->
+  
+            <button class="btn-sm details-button" (click)="selectRow(row)">
+              <i class="fa fa-eye"></i>
+              <span>التفاصيل</span>
+            </button>
+          </td>
+        </tr>
+      }
 
-          <button class="btn-sm details-button" (click)="selectRow(row)">
-            <i class="fa fa-eye"></i>
-            <span>التفاصيل</span>
-          </button>
-        </td>
-      </tr>
     </tbody>
   </table>
 </div>

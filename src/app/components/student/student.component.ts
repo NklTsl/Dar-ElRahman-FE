@@ -1,10 +1,14 @@
+import { NgClass } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-student',
   standalone: true,
   templateUrl: './student.component.html',
-  styleUrls: ['./student.component.css'],
+  styleUrls: ['./student.component.scss'],
+  imports: [
+    NgClass
+  ]
 })
 export class StudentComponent implements OnInit {
   data = [

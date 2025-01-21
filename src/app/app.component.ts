@@ -4,11 +4,11 @@ import { SidebarComponent } from "./components/sidebar/sidebar.component";
 import { HeaderComponent } from "./components/header/header.component";
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  imports: [StudentComponent, SidebarComponent, HeaderComponent],
+    selector: 'app-root',
+    standalone: true,
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
+    imports: [StudentComponent, SidebarComponent, HeaderComponent]
 })
 export class AppComponent {
   title = 'Dar-ElRahman';
