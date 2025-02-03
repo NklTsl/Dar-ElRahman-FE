@@ -1,18 +1,22 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import { Router } from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import { FormsModule } from '@angular/forms'; // Import FormsModule
 import { CommonModule } from '@angular/common';
 import { first } from 'rxjs';
+import {AppRoutes} from "../constants/app-routes";
 
 @Component({
   selector: 'app-registration',
   standalone: true,
-  imports: [FormsModule, CommonModule], // Add FormsModule here
+  imports: [FormsModule, CommonModule, RouterLink], // Add FormsModule here
   templateUrl: './registration.component.html',
   styleUrl: './registration.component.scss',
 })
 export class RegistrationComponent {
+
+  public readonly AppRoutes = AppRoutes;
+
   user = {
     firstName: '',
     lastName: '',

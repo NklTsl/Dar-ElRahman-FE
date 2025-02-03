@@ -1,16 +1,12 @@
 import { Component } from '@angular/core';
-import { StudentComponent } from './components/student/student.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { HeaderComponent } from './components/header/header.component';
-import { RegistrationComponent } from './registration/registration.component';
-import { LoginComponent } from './login/login.component';
+import {RouterOutlet} from "@angular/router";
 
 @Component({
   selector: 'app-root',
   standalone: true,
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  imports: [LoginComponent],
+  imports: [RouterOutlet],
 })
 export class AppComponent {
   title = 'Dar-ElRahman';
