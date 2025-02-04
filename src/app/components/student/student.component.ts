@@ -1,5 +1,6 @@
 import { NgClass } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-student',
@@ -93,6 +94,9 @@ export class StudentComponent implements OnInit {
       class: 'حمادة عبد ربه',
     },
   ];
+
+  constructor(protected authService: AuthService) {
+  }
 
   ngOnInit(): void {
     this.rowSelected = this.data[0];

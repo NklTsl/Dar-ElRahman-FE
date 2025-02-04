@@ -1,22 +1,30 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import {environment} from "../../environments/environment";
+import {BackendEndpoints} from "../constants/backend-endpoints";
+import {Router} from "@angular/router";
+import {AppRoutes} from "../constants/app-routes";
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private baseURL = 'http://localhost:8020/memo-api';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   register(user: any): Observable<any> {
-    return this.http.post(this.baseURL + '/api/v1/auth/register', user);
+    return this.http.post(`${environment.memoApiUrl}${BackendEndpoints.register}`, user);
   }
+
   login(credentials: any): Observable<any> {
-    return this.http.post(
-      this.baseURL + '/api/v1/auth/authenticate',
+    return this.http.post(`${environment.memoApiUrl}${BackendEndpoints.login}`,
       credentials
     );
+  }
+
+  logout(){
+    localStorage.clear();
+    this.router.navigateByUrl(`/${AppRoutes.LOGIN}`).then();
   }
 }
