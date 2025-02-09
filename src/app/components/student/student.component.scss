@@ -36,6 +36,36 @@
   transition: background-color 0.3s ease; /* Smooth hover transition */
 }
 
+.edit-button {
+  background-color: #f5d44f; /* Light blue background */
+  color: #000000; /* White text */
+  border: none;
+  border-radius: 8px; /* Rounded corners */
+  padding: 8px 16px; /* Button padding */
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Space between text and icon */
+  font-size: 14px; /* Font size */
+  text-align: center;
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease; /* Smooth hover transition */
+}
+
+.delete-button {
+  background-color: #f54f4f; /* Light blue background */
+  color: #ffffff; /* White text */
+  border: none;
+  border-radius: 8px; /* Rounded corners */
+  padding: 8px 16px; /* Button padding */
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Space between text and icon */
+  font-size: 14px; /* Font size */
+  text-align: center;
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease; /* Smooth hover transition */
+}
+
 .details-button i {
   font-size: 16px; /* Icon size */
 }
