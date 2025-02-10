@@ -1,6 +1,6 @@
 import { CommonModule, NgClass } from '@angular/common';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../../services/auth.service';
 import { FormsModule } from '@angular/forms';
 import { TeacherService } from 'src/app/services/teacher/teacher.service';
 import { PeriodService } from 'src/app/services/period/period.service';
@@ -16,7 +16,7 @@ import * as bootstrap from 'bootstrap'; // Import Bootstrap
   imports: [NgClass, FormsModule, CommonModule],
 })
 export class StudentComponent implements OnInit {
-  @ViewChild('studentModal') studentModal!: ElementRef; // Reference to the modal
+  // @ViewChild('studentModal') studentModal!: ElementRef; // Reference to the modal
   data: any[] = [];
   student = {
     fullName: '',
@@ -101,6 +101,9 @@ export class StudentComponent implements OnInit {
       },
       (error) => {
         this.error = error;
+        setTimeout(() => {
+          this.error = undefined
+        }, 2000);
         console.log(error);
       }
     );
@@ -142,8 +145,9 @@ export class StudentComponent implements OnInit {
   }
   closeModal() {
     // Use Bootstrap's JavaScript API to close the modal
-    const modalElement = this.studentModal.nativeElement;
-    const modal = bootstrap.Modal.getInstance(modalElement);
-    modal?.hide();
+//     const myModal = new bootstrap.Modal(document.getElementById('studentModal')!);
+// console.log(document.getElementById('studentModal'));
+    bootstrap.Modal.getInstance(document.getElementById('studentModal')!)?.hide()
+    // myModal.hide(); // Dismiss the modal
   }
 }
