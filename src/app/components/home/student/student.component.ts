@@ -110,7 +110,6 @@ export class StudentComponent implements OnInit {
       }
     );
   }
-
   selectRow(row: any) {
     this.rowSelected = row;
   }

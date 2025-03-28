@@ -1,6 +1,6 @@
 <div class="registration-container">
   <div class="logo">
-    <img src="../../../assets/imgs/logo.png" alt="Logo" class="logo" />
+    <img src="assets/imgs/logo.png" alt="Logo" class="logo" />
     <!-- Replace with your logo path -->
   </div>
   <h1>تسجيل مستخدم جديد</h1>
@@ -69,7 +69,3 @@
   </form>
   <p class="login my-3">لديك حساب؟<a [routerLink]="['/', AppRoutes.LOGIN]" class="login-link"> تسجيل الدخول</a></p>
 </div>
-
-@if(loadingService.isLoading){
-  <app-loading />
-}

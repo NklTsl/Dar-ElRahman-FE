@@ -4,3 +4,4 @@ export interface BaseAuditModel {
   updatedAt?: string; // Optional, format: TIMESTAMP
   updatedBy?: string; // Optional
 }
+``

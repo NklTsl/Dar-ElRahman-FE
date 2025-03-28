@@ -36,19 +36,19 @@ export class AuthHandlerInterceptor implements HttpInterceptor {
     }
   }
 
-  isPublicEndpoint(request: HttpRequest<any>) {
-    return (
-      request.url.endsWith('/register') || request.url.endsWith('/authenticate')
-    );
+  isPublicEndpoint(request: HttpRequest<any>){
+    return request.url.endsWith('/register') || request.url.endsWith('/authenticate');
   }
 
   private addRequiredHeaderProperties(
-    request: HttpRequest<any>
+      request: HttpRequest<any>,
   ): HttpRequest<any> {
+
     const session_token = localStorage.getItem('token');
 
     let requestHeaders = {
-      headers: request.headers.set('Authorization', 'Bearer ' + session_token),
+      headers: request.headers
+          .set('Authorization', 'Bearer ' + session_token)
     };
 
     return request.clone(requestHeaders);
