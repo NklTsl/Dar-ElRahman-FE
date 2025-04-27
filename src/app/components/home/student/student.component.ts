@@ -18,6 +18,8 @@ import { AddStudentDialogComponent } from './add-student-dialog/add-student-dial
 import { MatDialog } from '@angular/material/dialog';
 import {AlertService} from "../../../services/alert.service";
 import {Student} from "../../../models/Student.model";
+import { QuestionDialogComponent } from './question-dialog/question-dialog.component';
+import { SurahsService } from 'src/app/services/surahs/surahs.service';
 
 @Component({
   selector: 'app-student',
@@ -56,6 +58,7 @@ export class StudentComponent implements OnInit {
   data = signal<any[] | undefined>(undefined);
   teachers = signal<any[] | undefined>(undefined);
   rings = signal<any[] | undefined>(undefined);
+  surahs = signal<any[] | undefined>(undefined);
 
   rowSelected: any;
 
@@ -66,6 +69,7 @@ export class StudentComponent implements OnInit {
     private ringService: RingService,
     private studentService: StudentService,
     private alertService: AlertService,
+    private surahsService: SurahsService,
     protected loadingService: LoadingService,
   ) {
     effect(() => {
@@ -135,6 +139,18 @@ export class StudentComponent implements OnInit {
         this.alertService.error('هناك خطأ. الرجاء المحاولة مرة أخرى.');
         this.loadingService.stopLoading();
         console.error('Rings failed', error);
+      }
+    );
+  }
+
+  private getAllSurahs() {
+    this.surahsService.getAllSurahs().subscribe(
+      (response: any) => {
+        this.surahs.set(response.data);
+      },
+      (error) => {
+        this.alertService.error('هناك خطأ. الرجاء المحاولة مرة أخرى.');
+        this.loadingService.stopLoading();
       }
     );
   }
@@ -257,4 +273,19 @@ export class StudentComponent implements OnInit {
       }
     });
   }
+
+    openQuestionDialog(studentId?: number) {
+      const dialogRef = this.dialog.open(QuestionDialogComponent, {
+        width: '100%',
+        maxWidth: '100%',
+        height: '100%',
+        data: {studentId: studentId, surahs: this.surahs()}
+      });
+  
+      dialogRef.afterClosed().subscribe((result) => {
+        console.log('The dialog was closed');
+        if (result !== undefined) {
+        }
+      });
+    }
 }

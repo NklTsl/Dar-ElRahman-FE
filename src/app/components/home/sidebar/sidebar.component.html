@@ -21,18 +21,22 @@
       routerLinkActive="activeLink"
       [routerLinkActiveOptions]="{ exact: true }"
     >
-      <a [routerLink]="['/', AppRoutes.STUDENT]">قائمة الكتاب</a>
+      <a [routerLink]="[AppRoutes.STUDENT]">قائمة الكتاب</a>
     </li>
     <li
       routerLinkActive="activeLink"
       [routerLinkActiveOptions]="{ exact: true }"
     >
-      <a [routerLink]="['/', AppRoutes.TEACHER]">قائمة الموظفين</a>
+      <a [routerLink]="[AppRoutes.TEACHER]">قائمة الموظفين</a>
     </li>
     <li><a href="#">قائمة الغياب</a></li>
-    <li><a href="#">موعد سؤال القرآن</a></li>
-    <li><a href="#">قائمة من البقرة للحديد</a></li>
-    <li><a href="#">قائمة من المجادلة للناس</a></li>
+    <li>
+      <!-- <a [routerLink]="[AppRoutes.SURAHS]">سور القرآن</a> -->
+      <a href="#">سؤال القرآن</a>
+    </li>
+    <!-- <li><a href="#">موعد سؤال القرآن</a></li> -->
+    <!-- <li><a href="#">قائمة من البقرة للحديد</a></li> -->
+    <!-- <li><a href="#">قائمة من المجادلة للناس</a></li> -->
     <li><a href="#">نتائج عمل الموظفين</a></li>
     <li><a href="#">قائمة الخريجين (النور)</a></li>
     <li><a href="#">الرسوم الشهرية</a></li>

@@ -27,12 +27,6 @@
           >{{ rowSelected.status === "STOPPED" ? "منقطع" : "متصل" }}</span
         >
       </p>
-      <p class="d-flex justify-content-between">
-        <strong>سور القرآن</strong>
-        <button class="btn-sm details-button" (click)="openQuestionDialog()">
-          <i class="fa fa-eye"></i>
-        </button>
-      </p>
     </div>
   </div>
 
@@ -73,14 +67,6 @@
   </div>
 </div>
 }
-
-<button
-  type="button"
-  class="details-button add-button"
-  (click)="openAddStudentDialog()"
->
-  اضافة طالب جديد
-</button>
 
 <div class="table-container">
   <table class="custom-table" style="text-align: center">
@@ -125,17 +111,9 @@
 
             <button
               class="btn-sm edit-button"
-              (click)="handleEditClick(row)"
-              data-bs-toggle="modal"
-              data-bs-target="#studentModal"
             >
               <i class="fa fa-eye"></i>
-              <span>تعديل</span>
-            </button>
-
-            <button class="btn-sm delete-button" (click)="deleteStudent(row)">
-              <i class="fa fa-eye"></i>
-              <span>حذف</span>
+              <span>سؤال القرآن</span>
             </button>
           </div>
         </td>

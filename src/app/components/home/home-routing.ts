@@ -17,6 +17,13 @@ export const HOME_CHILDREN_ROUTES: Routes = [
       ),
   },
   {
+    path: AppRoutes.SURAHS,
+    loadComponent: () =>
+      import('./surahs/surahs.component').then(
+        (c) => c.SurahsComponent,
+      ),
+  },
+  {
     path: '',
     pathMatch: 'full',
     redirectTo: AppRoutes.STUDENT,
