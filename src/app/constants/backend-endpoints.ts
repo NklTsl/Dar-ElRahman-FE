@@ -6,4 +6,5 @@ export class BackendEndpoints {
   public static ring = '/api/v1/rings';
   public static period = '/api/v1/periods';
   public static surahs = '/api/v1/surahs';
+  public static absence = '/api/v1/absences';
 }

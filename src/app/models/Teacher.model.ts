@@ -1,4 +1,7 @@
-interface Teacher extends BaseAuditModel {
+import {BaseAuditModel} from "./BaseAuditModel.model";
+import {MaritalStatus} from "./MaritalStatus.enum";
+
+export interface Teacher extends BaseAuditModel {
   id?: number; // Optional because it might be auto-generated
   fullName: string; // Required, min 5, max 100 characters
   nationalId?: string; // Optional, must match NATIONAL_ID_PATTERN

@@ -1,7 +1,7 @@
-import { BaseAuditModel } from "./BaseAuditModel.model";
-import { MaritalStatus } from "./MaritalStatus.enum";
-import { Ring } from "./Ring.model";
-import { Status } from "./Status.enum";
+import {Ring} from "./Ring.model";
+import {BaseAuditModel} from "./BaseAuditModel.model";
+import {Status} from "./Status.enum";
+import {MaritalStatus} from "./MaritalStatus.enum";
 
 export interface Student extends BaseAuditModel {
   id?: number;

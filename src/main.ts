@@ -7,6 +7,10 @@ import { importProvidersFrom } from '@angular/core';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { httpInterceptorProviders } from './app/core/http/auth-handler-interceptor';
 import { LOCALE_ID } from '@angular/core';
+import {registerLocaleData} from "@angular/common";
+import localeAr from '@angular/common/locales/ar';
+
+registerLocaleData(localeAr);
 
 bootstrapApplication(AppComponent, {
   providers: [

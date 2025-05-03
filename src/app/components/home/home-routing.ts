@@ -24,6 +24,13 @@ export const HOME_CHILDREN_ROUTES: Routes = [
       ),
   },
   {
+    path: AppRoutes.ABSENCE,
+    loadComponent: () =>
+      import('./absence/absence.component').then(
+        (c) => c.AbsenceComponent,
+      ),
+  },
+  {
     path: '',
     pathMatch: 'full',
     redirectTo: AppRoutes.STUDENT,
