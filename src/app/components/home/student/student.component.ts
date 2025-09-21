@@ -1,4 +1,4 @@
-import { CommonModule, NgClass } from '@angular/common';
+import {CommonModule, NgClass} from '@angular/common';
 import {
   Component,
   effect,
@@ -8,18 +8,20 @@ import {
   signal,
   ViewChild,
 } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { TeacherService } from 'src/app/services/teacher/teacher.service';
-import { StudentService } from 'src/app/services/student/student.service';
-import { RingService } from 'src/app/services/ring/ring.service';
-import { Modal } from 'bootstrap';
-import { LoadingService } from 'src/app/services/loading.service';
-import { AddStudentDialogComponent } from './add-student-dialog/add-student-dialog.component';
-import { MatDialog } from '@angular/material/dialog';
+import {FormsModule} from '@angular/forms';
+import {TeacherService} from 'src/app/services/teacher/teacher.service';
+import {StudentService} from 'src/app/services/student/student.service';
+import {RingService} from 'src/app/services/ring/ring.service';
+import {Modal} from 'bootstrap';
+import {LoadingService} from 'src/app/services/loading.service';
+import {AddStudentDialogComponent} from './add-student-dialog/add-student-dialog.component';
+import {MatDialog} from '@angular/material/dialog';
 import {AlertService} from "../../../services/alert.service";
 import {Student} from "../../../models/Student.model";
-import { QuestionDialogComponent } from './question-dialog/question-dialog.component';
-import { SurahsService } from 'src/app/services/surahs/surahs.service';
+import {QuestionDialogComponent} from './question-dialog/question-dialog.component';
+import {SurahsService} from 'src/app/services/surahs/surahs.service';
+import {Period} from "../../../models/enums/Period.enum";
+import {Surah} from "../../../models/Surah.model";
 
 @Component({
   selector: 'app-student',
@@ -29,7 +31,7 @@ import { SurahsService } from 'src/app/services/surahs/surahs.service';
   imports: [NgClass, FormsModule, CommonModule],
 })
 export class StudentComponent implements OnInit {
-  @ViewChild('studentModal', { static: false }) studentModal!: ElementRef;
+  @ViewChild('studentModal', {static: false}) studentModal!: ElementRef;
   private modalInstance: Modal | null = null;
   buttonName = 'إضافة';
   student = {
@@ -50,15 +52,15 @@ export class StudentComponent implements OnInit {
   };
   error: any;
   periods: any[] = [
-    { name: 'First', nameAR: 'الأولى' },
-    { name: 'Second', nameAR: 'الثانية' },
-    { name: 'Extended', nameAR: 'ممتدة' },
-    { name: 'NOT_DEFINED', nameAR: 'غير معروف' },
+    {name: 'First', nameAR: 'الأولى'},
+    {name: 'Second', nameAR: 'الثانية'},
+    {name: 'Extended', nameAR: 'ممتدة'},
+    {name: 'NOT_DEFINED', nameAR: 'غير معروف'},
   ];
   data = signal<any[] | undefined>(undefined);
   teachers = signal<any[] | undefined>(undefined);
   rings = signal<any[] | undefined>(undefined);
-  surahs = signal<any[] | undefined>(undefined);
+  surahs = signal<Surah[] | undefined>(undefined);
 
   rowSelected: any;
 
@@ -85,21 +87,15 @@ export class StudentComponent implements OnInit {
     this.getAllTeachers();
   }
 
-  ngAfterViewInit() {
-    // Initialize the modal instance
-    this.modalInstance = new Modal(this.studentModal.nativeElement);
-  }
-
   closeModal() {
     if (this.modalInstance) {
       this.modalInstance.hide();
-      // Manually remove the backdrop
       const backdrop = document.querySelector('.modal-backdrop');
       if (backdrop) {
         backdrop.remove();
       }
-    } else {
-      console.error('Modal instance is not initialized.');
+      document.body.classList.remove('modal-open');
+      document.body.style.overflow = '';
     }
   }
 
@@ -114,6 +110,7 @@ export class StudentComponent implements OnInit {
       }
     );
   }
+
   selectRow(row: any) {
     this.rowSelected = row;
   }
@@ -220,6 +217,10 @@ export class StudentComponent implements OnInit {
     else this.student.status = 'STOPPED';
 
     this.buttonName = 'تعديل';
+    if (!this.modalInstance) {
+      this.modalInstance = new Modal(this.studentModal.nativeElement);
+    }
+    this.modalInstance.show();
   }
 
   deleteStudent(student: any) {
@@ -274,18 +275,20 @@ export class StudentComponent implements OnInit {
     });
   }
 
-    openQuestionDialog(studentId?: number) {
-      const dialogRef = this.dialog.open(QuestionDialogComponent, {
-        width: '100%',
-        maxWidth: '100%',
-        height: '100%',
-        data: {studentId: studentId, surahs: this.surahs()}
-      });
-  
-      dialogRef.afterClosed().subscribe((result) => {
-        console.log('The dialog was closed');
-        if (result !== undefined) {
-        }
-      });
-    }
+  openQuestionDialog(studentId?: number) {
+    const dialogRef = this.dialog.open(QuestionDialogComponent, {
+      width: '100%',
+      maxWidth: '100%',
+      height: '100%',
+      data: {studentId: studentId, surahs: this.surahs()}
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed');
+      if (result !== undefined) {
+      }
+    });
+  }
+
+  protected readonly Period = Period;
 }

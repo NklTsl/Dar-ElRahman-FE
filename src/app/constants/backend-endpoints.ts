@@ -7,4 +7,6 @@ export class BackendEndpoints {
   public static period = '/api/v1/periods';
   public static surahs = '/api/v1/surahs';
   public static absence = '/api/v1/absences';
+  public static questionnaire = '/api/v1/questionnaires';
+  public static student_questionnaire = '/api/v1/student-questionnaires';
 }

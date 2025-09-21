@@ -20,6 +20,7 @@ export class HeaderComponent implements OnInit {
       const [header, payload, signature] = token.split('.');
       // Decode the Base64-encoded payload
       const decodedPayload = atob(payload);
+      console.log("The authenticated user is:-", decodedPayload);
       return JSON.parse(decodedPayload);
     } catch (error) {
       console.error('Failed to decode JWT:', error);

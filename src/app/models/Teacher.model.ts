@@ -1,5 +1,5 @@
 import {BaseAuditModel} from "./BaseAuditModel.model";
-import {MaritalStatus} from "./MaritalStatus.enum";
+import {MaritalStatus} from "./enums/MaritalStatus.enum";
 
 export interface Teacher extends BaseAuditModel {
   id?: number; // Optional because it might be auto-generated

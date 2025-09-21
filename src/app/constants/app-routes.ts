@@ -6,4 +6,7 @@ export class AppRoutes {
   public static TEACHER = 'teacher';
   public static ABSENCE = 'absence';
   public static SURAHS = 'surahs';
+  public static RING = 'ring';
+  public static QUESTIONNAIRE = 'questionnaire';
+  public static STUDENT_QUESTIONNAIRE = 'student-questionnaire';
 }

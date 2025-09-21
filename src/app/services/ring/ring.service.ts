@@ -15,4 +15,24 @@ export class RingService {
       `${environment.memoApiUrl}${BackendEndpoints.ring}`
     );
   }
+
+  deleteRing(ringId: number): Observable<any> {
+    return this.http.delete(
+      `${environment.memoApiUrl}${BackendEndpoints.ring}/${ringId}`
+    );
+  }
+
+  addRing(ring: any): Observable<any> {
+    return this.http.post(
+      `${environment.memoApiUrl}${BackendEndpoints.ring}`,
+      ring
+    );
+  }
+
+  updateRing(ring: any): Observable<any> {
+    return this.http.put(
+      `${environment.memoApiUrl}${BackendEndpoints.ring}`,
+      ring
+    );
+  }
 }

@@ -153,13 +153,6 @@ export class TeacherComponent implements OnInit {
   }
   editTeacher(student: any) {
     this.teacher = this.cloneTeacher(student);
-    let currentMaritalStatus = null;
-    if (this.teacher.maritalStatus === 'يتيم') currentMaritalStatus = 'ORPHAN';
-    else if (this.teacher.maritalStatus === 'مُطلق')
-      currentMaritalStatus = 'DIVORCED';
-    else currentMaritalStatus = 'NOT_DEFINED';
-    console.log(this.teacher);
-
     this.teacherForm?.patchValue({
       id: this.teacher.id,
       fullName: this.teacher.fullName,
@@ -168,7 +161,7 @@ export class TeacherComponent implements OnInit {
       emailAddress: this.teacher.emailAddress,
       address: this.teacher.address,
       birthDate: this.teacher.birthDate,
-      maritalStatus: currentMaritalStatus,
+      maritalStatus: this.teacher.maritalStatus,
       profession: this.teacher.profession,
       educationalQualification: this.teacher.educationalQualification,
       qualificationDate: this.teacher.qualificationDate,

@@ -22,6 +22,7 @@
     "@popperjs/core": "^2.11.8",
     "@types/bootstrap": "^5.2.10",
     "bootstrap": "^5.3.3",
+    "c": "^1.1.1",
     "dar-el-rahman": "file:",
     "jwt-decode": "^4.0.0",
     "rxjs": "~7.8.0",

@@ -31,6 +31,27 @@ export const HOME_CHILDREN_ROUTES: Routes = [
       ),
   },
   {
+    path: AppRoutes.RING,
+    loadComponent: () =>
+      import('./ring/ring.component').then(
+        (c) => c.RingComponent,
+      ),
+  },
+  {
+    path: AppRoutes.QUESTIONNAIRE,
+    loadComponent: () =>
+      import('./questionnaire/questionnaire.component').then(
+        (c) => c.QuestionnaireComponent,
+      ),
+  },
+  {
+    path: AppRoutes.STUDENT_QUESTIONNAIRE,
+    loadComponent: () =>
+      import('./student-questionnaire/student-questionnaire.component').then(
+        (c) => c.StudentQuestionnaireComponent,
+      ),
+  },
+  {
     path: '',
     pathMatch: 'full',
     redirectTo: AppRoutes.STUDENT,

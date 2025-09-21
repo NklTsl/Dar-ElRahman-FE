@@ -42,7 +42,7 @@
           <strong> عدد مرات الغياب منذ ذلك الوقت:</strong> {{ rowSelected?.absenceCounter }}
         </p>
         <p class="d-flex justify-content-between">
-          <strong>الفترة:</strong> {{ rowSelected?.student?.ring?.period }}
+          <strong>الفترة:</strong> {{ rowSelected?.student?.ring?.period === Period.first ? 'أولى' : (rowSelected?.student?.ring?.period === Period.second ? 'ثانية' : 'ممتدة') }}
         </p>
       </div>
     </div>
@@ -51,7 +51,7 @@
       <div class="card-body">
         <h3 class="card-title">تفاصيل أخرى</h3>
         <p class="card-text d-flex justify-content-between">
-          <strong>الحالة الاجتماعية:</strong> {{ rowSelected?.student?.maritalStatus }}
+          <strong>الحالة الاجتماعية:</strong> {{ rowSelected?.student?.maritalStatus === MaritalStatus.ORPHAN ? 'يتيم' : 'غير معروف'}}
         </p>
         <p class="d-flex justify-content-between">
           <strong>الفصل:</strong> {{ rowSelected?.student?.ring?.name }}

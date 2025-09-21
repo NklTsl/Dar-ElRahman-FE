@@ -21,19 +21,37 @@
       routerLinkActive="activeLink"
       [routerLinkActiveOptions]="{ exact: true }"
     >
-      <a [routerLink]="[AppRoutes.STUDENT]">قائمة الكتاب</a>
+      <a [routerLink]="[AppRoutes.STUDENT]">الطلبة</a>
     </li>
     <li
       routerLinkActive="activeLink"
       [routerLinkActiveOptions]="{ exact: true }"
     >
-      <a [routerLink]="[AppRoutes.TEACHER]">قائمة الموظفين</a>
+      <a [routerLink]="[AppRoutes.RING]">الحلقات</a>
     </li>
-    <li>
-      <a [routerLink]="[AppRoutes.ABSENCE]">قائمة الغياب</a>
-    <li>
-      <!-- <a [routerLink]="[AppRoutes.SURAHS]">سور القرآن</a> -->
-      <a href="#">سؤال القرآن</a>
+    <li
+      routerLinkActive="activeLink"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <a [routerLink]="[AppRoutes.TEACHER]">المُعلِمون</a>
+    </li>
+    <li
+      routerLinkActive="activeLink"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <a [routerLink]="[AppRoutes.ABSENCE]">الغياب</a>
+    </li>
+    <li
+      routerLinkActive="activeLink"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <a [routerLink]="[AppRoutes.QUESTIONNAIRE]">أسئلة القرآن</a>
+    </li>
+    <li
+      routerLinkActive="activeLink"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+       <a [routerLink]="[AppRoutes.STUDENT_QUESTIONNAIRE]">أسئلة الطلبة</a>
     </li>
     <!-- <li><a href="#">موعد سؤال القرآن</a></li> -->
     <!-- <li><a href="#">قائمة من البقرة للحديد</a></li> -->

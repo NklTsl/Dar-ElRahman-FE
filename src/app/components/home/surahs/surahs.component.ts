@@ -16,6 +16,7 @@ import { MatDialog } from '@angular/material/dialog';
 import {AlertService} from "../../../services/alert.service";
 import {Student} from "../../../models/Student.model";
 import { SurahsService } from 'src/app/services/surahs/surahs.service';
+import {Surah} from "../../../models/Surah.model";
 
 @Component({
   selector: 'app-surahs',
@@ -35,7 +36,7 @@ export class SurahsComponent implements OnInit {
   data = signal<any[] | undefined>(undefined);
   teachers = signal<any[] | undefined>(undefined);
   rings = signal<any[] | undefined>(undefined);
-  surahs = signal<any[] | undefined>(undefined);
+  surahs = signal<Surah[] | undefined>(undefined);
 
   rowSelected: any;
 

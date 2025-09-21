@@ -8,6 +8,8 @@ import {StudentAbsenceService} from "../../../services/absence/absence.service";
 import {AddAbsenceDialogComponent} from "./add-student-absence-dialog/add-student-absence-dialog.component";
 import {NgClass, NgIf} from "@angular/common";
 import {ConfirmDialogComponent} from "../../shared/confirmation/confirmation.component";
+import {Period} from "../../../models/enums/Period.enum";
+import {MaritalStatus} from "../../../models/enums/MaritalStatus.enum";
 
 @Component({
   selector: 'app-absence',
@@ -104,4 +106,6 @@ export class AbsenceComponent {
     return typeof status === 'string' && status === value;
   }
 
+  protected readonly Period = Period;
+  protected readonly MaritalStatus = MaritalStatus;
 }

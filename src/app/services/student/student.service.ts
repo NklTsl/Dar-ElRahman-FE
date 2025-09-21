@@ -35,4 +35,10 @@ export class StudentService {
       `${environment.memoApiUrl}${BackendEndpoints.student}/${studentId}`
     );
   }
+
+  getStudentsNotInQuestionnaire(questionnaireId: number): Observable<any> {
+    return this.http.get<any>(
+      `${environment.memoApiUrl}${BackendEndpoints.student}/not-in-questionnaire/${questionnaireId}`
+    );
+  }
 }
