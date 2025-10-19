@@ -3,6 +3,7 @@ import {QuestionnaireType} from "./enums/QuestionnaireType.enum";
 import {BaseAuditModel} from "./BaseAuditModel.model";
 import {Ring} from "./Ring.model";
 import {Surah} from "./Surah.model";
+import {QuestionnaireResult} from "./QuestionnaireResult.model";
 
 export interface Questionnaire extends BaseAuditModel {
   id?: number;
@@ -12,8 +13,10 @@ export interface Questionnaire extends BaseAuditModel {
   questionDate?: Date;
   questionType?: QuestionType;
   nextQuestionDate?: Date;
-  currentSurah?:Surah;
-  nextSurah?:Surah;
+  currentSurah?: Surah;
+  nextSurah?: Surah;
   ringId?: number;
   ring?: Ring;
+  done?: boolean;
+  questionnaireResult?: QuestionnaireResult;
 }

@@ -1,71 +1,101 @@
 <div class="registration-container">
   <div class="logo">
-    <img src="assets/imgs/logo.png" alt="Logo" class="logo" />
+    <img src="assets/imgs/logo.png" alt="Logo" class="logo"/>
     <!-- Replace with your logo path -->
   </div>
   <h1>تسجيل مستخدم جديد</h1>
-  <form (ngSubmit)="onSubmit()">
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
     <div class="row">
       <div class="col-3">
         <div class="form-group">
           <label for="firstName">الاسم الاول</label>
           <input
+            class="form-control"
             type="text"
             id="firstName"
-            [(ngModel)]="user.firstName"
+            formControlName="firstName"
             name="firstName"
             required
           />
+          <div
+            *ngIf="userForm.get('firstName')?.invalid && userForm.get('firstName')?.touched"
+            class="alert alert-danger"
+          >
+            <small *ngIf="userForm.get('firstName')?.errors?.['required']">يجب ادخال الأسم الأول</small>
+          </div>
         </div>
       </div>
       <div class="col-3">
         <div class="form-group">
           <label for="lastName">الاسم الاخير</label>
           <input
+            class="form-control"
             type="text"
             id="username"
-            [(ngModel)]="user.lastName"
+            formControlName="lastName"
             name="lastName"
             required
           />
+          <div
+            *ngIf="userForm.get('lastName')?.invalid && userForm.get('lastName')?.touched"
+            class="alert alert-danger"
+          >
+            <small *ngIf="userForm.get('lastName')?.errors?.['required']">يجب ادخال الأسم الأخير</small>
+          </div>
         </div>
       </div>
       <div class="col-3">
         <div class="form-group">
           <label for="email">البريد الالكترونى</label>
           <input
+            class="form-control"
             type="text"
             id="email"
-            [(ngModel)]="user.email"
+            formControlName="email"
             name="email"
             required
           />
+          <div
+            *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched"
+            class="alert alert-danger"
+          >
+            <small *ngIf="userForm.get('email')?.errors?.['required']">يجب ادخال البريد الألكترونى</small>
+          </div>
         </div>
       </div>
       <div class="col-3">
         <div class="form-group">
           <label for="password">كلمة المرور</label>
           <input
+            class="form-control"
             type="password"
             id="password"
-            [(ngModel)]="user.password"
+            formControlName="password"
             name="password"
             required
           />
+          <div
+            *ngIf="userForm.get('password')?.invalid && userForm.get('password')?.touched"
+            class="alert alert-danger"
+          >
+            <small *ngIf="userForm.get('password')?.errors?.['required']">يجب ادخال كلمة المرور</small>
+          </div>
         </div>
       </div>
       <div class="col-12">
         <div class="form-group">
           <label for="role">اختر دور الموظف</label>
-          <select multiple id="role" [(ngModel)]="user.roles" name="role">
+          <select multiple id="role" formControlName="roles" name="role" class="form-control">
             <option value="SUPERVISOR">مشرف</option>
             <option value="ADMIN">ادارى</option>
             <option value="TECHNICAL">فنى</option>
           </select>
+          <small *ngIf="userForm.get('roles')?.errors?.['required']"
+          >يجب أختيار دور المستخدم</small>
         </div>
       </div>
     </div>
-    <button type="submit" class="submit-button">تسجيل</button>
+    <button type="submit" class="submit-button" [disabled]="userForm.invalid">تسجيل</button>
   </form>
   <p class="login my-3">لديك حساب؟<a [routerLink]="['/', AppRoutes.LOGIN]" class="login-link"> تسجيل الدخول</a></p>
 </div>

@@ -1,4 +1,4 @@
 export enum Status {
-  CONNECTED,
-  STOPPED,
+  connected = 'connected',
+  stopped = 'stopped',
 }

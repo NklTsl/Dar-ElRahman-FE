@@ -1,30 +1,57 @@
-@if(rowSelected){
-<div class="d-flex justify-content-between details-container">
-  <!-- Questionnaire Details Section -->
-  <div class="card">
-    <div class="card-body">
-      <h3 class="card-title">تفاصيل السؤال</h3>
-      <p class="d-flex justify-content-between">
-        <strong>رقم المسلسل:</strong> {{ rowSelected.id }}
-      </p>
-      <p class="d-flex justify-content-between">
-        <strong>نوع الحفظ:</strong> {{ rowSelected.questionnaireType === QuestionnaireType.memorization ? 'تسميع' : 'مراجعة' }}
-      </p>
-      <p class="d-flex justify-content-between">
-        <strong>نوع السؤال:</strong> {{ rowSelected.questionType === QuestionType.first ? 'أول' : (rowSelected.questionType === QuestionType.second ? 'ثالث' : 'ثانى') }}
-      </p>
-      <p class="d-flex justify-content-between">
-        <strong>تاريخ السؤال:</strong> {{ rowSelected.questionDate | date: 'yyyy-MM-dd' }}
-      </p>
-      <p class="d-flex justify-content-between">
-        <strong>السورة الحالية:</strong> {{ rowSelected.currentSurah?.nameAr }}
-      </p>
-      <p class="d-flex justify-content-between">
-        <strong>الحلقة:</strong> {{ rowSelected.ring?.name }}
-      </p>
+@if (rowSelected) {
+  <div class="d-flex justify-content-between details-container">
+    <!-- Questionnaire Details Section -->
+    <div class="card">
+      <div class="card-body">
+        <h3 class="card-title">بيانات السؤال</h3>
+        <p class="d-flex justify-content-between">
+          <strong>رقم المسلسل:</strong> {{ rowSelected.id }}
+        </p>
+        <p class="d-flex justify-content-between">
+          <strong>نوع
+            الحفظ:</strong> {{ rowSelected.questionnaireType === QuestionnaireType.memorization ? 'تسميع' : 'مراجعة' }}
+        </p>
+        <p class="d-flex justify-content-between">
+          <strong>نوع
+            السؤال:</strong> {{ rowSelected.questionType === QuestionType.first ? 'أول' : (rowSelected.questionType === QuestionType.second ? 'ثالث' : 'ثانى') }}
+        </p>
+        <p class="d-flex justify-content-between">
+          <strong>تاريخ السؤال:</strong> {{ rowSelected.questionDate | date: 'yyyy-MM-dd' }}
+        </p>
+        <p class="d-flex justify-content-between">
+          <strong>السورة الحالية:</strong> {{ rowSelected.currentSurah?.nameAr }}
+        </p>
+        <p class="d-flex justify-content-between">
+          <strong>الحلقة:</strong> {{ rowSelected.ring?.name }}
+        </p>
+      </div>
+    </div>
+    <div class="card" *ngIf="rowSelected.questionnaireResult">
+      <div class="card-body">
+        <h3 class="card-title">نتيجة السؤال</h3>
+        <p class="d-flex justify-content-between">
+          <strong>عدد النقاط:</strong>
+          {{ rowSelected.questionnaireResult.questionPoints }}
+        </p>
+        <p class="d-flex justify-content-between">
+          <strong>عدد الناجحين:</strong>
+          {{ rowSelected.questionnaireResult.successCount }}
+        </p>
+        <p class="d-flex justify-content-between">
+          <strong>عدد الراسبين:</strong>
+          {{ rowSelected.questionnaireResult.failedCount }}
+        </p>
+        <p class="d-flex justify-content-between">
+          <strong>عدد الغائبين:</strong>
+          {{ rowSelected.questionnaireResult.absenceCount }}
+        </p>
+        <p class="d-flex justify-content-between">
+          <strong>نسبة النجاح:</strong>
+          {{ rowSelected.questionnaireType === QuestionnaireType.memorization ? rowSelected.questionnaireResult.successPercentage : rowSelected.questionnaireResult.revisionPercentage }} %
+        </p>
+      </div>
     </div>
   </div>
-</div>
 }
 <!-- Button to trigger the modal -->
 <button
@@ -52,7 +79,7 @@
         <div *ngIf="error" class="alert alert-danger">
           {{ error.error.errorDescription }}
         </div>
-        <h5 class="modal-title" id="questionnaireModalLabel">تفاصيل السؤال</h5>
+        <h5 class="modal-title" id="questionnaireModalLabel">بيانات السؤال</h5>
       </div>
       <div class="modal-body">
         <form
@@ -161,48 +188,54 @@
   <h2 *ngIf="!data || data!.length == 0">لم يتم تسجيل أي أسئلة حتى الآن. </h2>
   <table class="custom-table" *ngIf="data && data!.length > 0">
     <thead class="thead-dark">
-      <tr>
-        <th>نوع الحفظ</th>
-        <th>نوع السؤال</th>
-        <th>تاريخ السؤال</th>
-        <th>السورة الحالية</th>
-        <th>الحلقة</th>
-        <th>العمليات</th>
-      </tr>
+    <tr>
+      <th>نوع الحفظ</th>
+      <th>نوع السؤال</th>
+      <th>تاريخ السؤال</th>
+      <th>السورة الحالية</th>
+      <th>الحلقة</th>
+      <th>العمليات</th>
+    </tr>
     </thead>
     <tbody>
-      @for(row of data; track row.id;){
-      <tr>
-        <td>{{ row.questionnaireType === QuestionnaireType.memorization ? 'تسميع' : 'مراجعة' }}</td>
-        <td>{{ row.questionType === QuestionType.first ? 'أول' : (row.questionType === QuestionType.second ? 'ثالث' : 'ثانى') }}</td>
-        <td>{{ row.questionDate | date: 'yyyy-MM-dd' }}</td>
-        <td>{{ row.currentSurah?.nameAr }}</td>
-        <td>{{ row.ring?.name }}</td>
-        <td>
-          <div class="d-flex justify-content-between">
-            <button class="btn-sm details-button" (click)="selectRow(row)">
-              <i class="fa fa-eye"></i>
-              <span>التفاصيل</span>
-            </button>
+      @for (row of data; track row.id; ) {
+        <tr>
+          <td>{{ row.questionnaireType === QuestionnaireType.memorization ? 'تسميع' : 'مراجعة' }}</td>
+          <td>{{ row.questionType === QuestionType.first ? 'أول' : (row.questionType === QuestionType.second ? 'ثالث' : 'ثانى') }}</td>
+          <td>{{ row.questionDate | date: 'yyyy-MM-dd' }}</td>
+          <td>{{ row.currentSurah?.nameAr }}</td>
+          <td>{{ row.ring?.name }}</td>
+          <td>
+            <div class="d-flex justify-content-between">
+              <button class="btn-sm details-button" (click)="selectRow(row)">
+                <i class="fa fa-eye"></i>
+                <span>البيانات</span>
+              </button>
 
-            <button
-              class="btn-sm edit-button"
-              (click)="editQuestionnaire(row)"
-              type="button"
-              data-bs-toggle="modal"
-              data-bs-target="#questionnaireModal"
-            >
-              <i class="fa fa-edit"></i>
-              <span>تعديل</span>
-            </button>
+              <button
+                class="btn-sm edit-button"
+                (click)="editQuestionnaire(row)"
+                type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#questionnaireModal"
+              >
+                <i class="fa fa-edit"></i>
+                <span>تعديل</span>
+              </button>
 
-            <button class="btn-sm danger-button" (click)="deleteQuestionnaire(row)">
-              <i class="fa fa-trash"></i>
-              <span>حذف</span>
-            </button>
-          </div>
-        </td>
-      </tr>
+              <button class="btn-sm mark-button" type="button" (click)="markStudentQuestionnaireAsDone(row)"
+                      [disabled]="row.done">
+                <i class="fa fa-check"></i>
+                <span>أخْتُبِر</span>
+              </button>
+
+              <button class="btn-sm danger-button" (click)="deleteQuestionnaire(row)">
+                <i class="fa fa-trash"></i>
+                <span>حذف</span>
+              </button>
+            </div>
+          </td>
+        </tr>
       }
     </tbody>
   </table>

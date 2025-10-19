@@ -2,7 +2,7 @@
   <div class="d-flex justify-content-between details-container">
     <div class="card">
       <div class="card-body">
-        <h3 class="card-title">تفاصيل الطالب</h3>
+        <h3 class="card-title">بيانات الطالب</h3>
         <p class="d-flex justify-content-between">
           <strong>رقم المسلسل:</strong> {{ rowSelected?.student?.id }}
         </p>
@@ -16,14 +16,14 @@
           <strong>الحالة:</strong>
           <span
             [ngClass]="{
-              'green-status': isStatus(rowSelected?.student?.status, 'CONNECTED'),
-              'green-danger': isStatus(rowSelected?.student?.status, 'STOPPED')
+              'green-status': isStatus(rowSelected?.student?.status, 'connected'),
+              'green-danger': isStatus(rowSelected?.student?.status, 'stopped')
             }"
           >
             {{
-              isStatus(rowSelected?.student?.status, 'STOPPED')
+              isStatus(rowSelected?.student?.status, 'stopped')
                 ? "منقطع"
-                : isStatus(rowSelected?.student?.status, 'CONNECTED')
+                : isStatus(rowSelected?.student?.status, 'connected')
                   ? "متصل"
                   : ""
             }}
@@ -34,7 +34,7 @@
 
     <div class="card">
       <div class="card-body">
-        <h3 class="card-title">تفاصيل الغياب</h3>
+        <h3 class="card-title">بيانات الغياب</h3>
         <p class="card-text d-flex justify-content-between">
           <strong>تاريخ الغياب:</strong> {{ rowSelected?.absenceDate }}
         </p>
@@ -49,9 +49,9 @@
 
     <div class="card">
       <div class="card-body">
-        <h3 class="card-title">تفاصيل أخرى</h3>
+        <h3 class="card-title">بيانات أخرى</h3>
         <p class="card-text d-flex justify-content-between">
-          <strong>الحالة الاجتماعية:</strong> {{ rowSelected?.student?.maritalStatus === MaritalStatus.ORPHAN ? 'يتيم' : 'غير معروف'}}
+          <strong>الحالة الاجتماعية:</strong> {{ getArabicStatus(rowSelected?.student?.maritalStatus) }}
         </p>
         <p class="d-flex justify-content-between">
           <strong>الفصل:</strong> {{ rowSelected?.student?.ring?.name }}
@@ -69,7 +69,8 @@
 
 <main class="p-2">
   <button class="details-button add-button"
-          (click)="openAddDialog()">إضافة غياب</button>
+          (click)="openAddDialog()">إضافة غياب
+  </button>
 
   <div class="table-container">
     <h2 *ngIf="!absences() || absences()!.length == 0">لم يتم تسجيل أي غيابات لأي من الطلاب حتى الآن. </h2>
@@ -94,7 +95,7 @@
               <div class="d-flex justify-content-center gap-3">
                 <button class="btn-sm details-button" (click)="selectRow(absence)">
                   <i class="fa fa-eye"></i>
-                  <span>التفاصيل</span>
+                  <span>البيانات</span>
                 </button>
                 <button class="btn-sm edit-button" (click)="openEditDialog(absence)">
                   تعديل

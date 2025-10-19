@@ -6,7 +6,7 @@
 
   <div class="card">
     <div class="card-body">
-      <h3 class="card-title">تفاصيل الطالب</h3>
+      <h3 class="card-title">بيانات الطالب</h3>
       <p class="d-flex justify-content-between">
         <strong>رقم المسلسل:</strong> {{ rowSelected.id }}
       </p>
@@ -21,10 +21,10 @@
         <span
           class="green-status"
           [ngClass]="{
-            'green-status': rowSelected.status === 'CONNECTED',
-            'green-danger': rowSelected.status === 'STOPPED'
+            'green-status': rowSelected.status === 'connected',
+            'green-danger': rowSelected.status === 'stopped'
           }"
-          >{{ rowSelected.status === "STOPPED" ? "منقطع" : "متصل" }}</span
+          >{{ rowSelected.status === "stopped" ? "منقطع" : "متصل" }}</span
         >
       </p>
     </div>
@@ -32,7 +32,7 @@
 
   <div class="card">
     <div class="card-body">
-      <h3 class="card-title">تفاصيل التواصل</h3>
+      <h3 class="card-title">بيانات التواصل</h3>
       <p class="card-text d-flex justify-content-between">
         <strong>تليفون الأب:</strong> {{ rowSelected.fatherPhoneNumber }}
       </p>
@@ -47,7 +47,7 @@
 
   <div class="card">
     <div class="card-body">
-      <h3 class="card-title">تفاصيل أخرى</h3>
+      <h3 class="card-title">بيانات أخرى</h3>
       <p class="card-text d-flex justify-content-between">
         <strong>الحالة الاجتماعية:</strong> {{ rowSelected.maritalStatus }}
       </p>
@@ -91,22 +91,19 @@
           <span
             class="badge"
             [ngClass]="{
-              'green-status': row.status == 'CONNECTED',
-              'danger-status': row.status === 'STOPPED'
+              'green-status': row.status == 'connected',
+              'danger-status': row.status === 'stopped'
             }"
-            >{{ row.status === "STOPPED" ? "منقطع" : "متصل" }}</span
+            >{{ row.status === "stopped" ? "منقطع" : "متصل" }}</span
           >
         </td>
         <td>{{ row.ring.period }}</td>
         <td>{{ row.ring.teacherName }}</td>
         <td>
-          <!-- <button class="btn-sm details-button" (click)="selectRow(row)">
-              التفاصيل
-            </button> -->
           <div class="d-flex justify-content-between">
             <button class="btn-sm details-button" (click)="selectRow(row)">
               <i class="fa fa-eye"></i>
-              <span>التفاصيل</span>
+              <span>البيانات</span>
             </button>
 
             <button

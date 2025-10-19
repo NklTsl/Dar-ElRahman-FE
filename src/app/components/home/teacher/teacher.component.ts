@@ -1,5 +1,5 @@
-import { CommonModule, NgClass } from '@angular/common';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {CommonModule, NgClass} from '@angular/common';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -7,9 +7,11 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { TeacherService } from 'src/app/services/teacher/teacher.service';
-import { AppRegexPatterns } from 'src/app/constants/app-regex-patterns';
-import { Modal } from 'bootstrap';
+import {TeacherService} from 'src/app/services/teacher/teacher.service';
+import {AppRegexPatterns} from 'src/app/constants/app-regex-patterns';
+import {Modal} from 'bootstrap';
+import {TeacherMaritalStatus} from "../../../models/enums/TeacherMaritalStatus.enum";
+
 @Component({
   selector: 'app-teacher',
   imports: [NgClass, FormsModule, CommonModule, ReactiveFormsModule],
@@ -41,13 +43,14 @@ export class TeacherComponent implements OnInit {
   };
   error: any;
   deleteError: any;
-  teachers: any[] = [];
 
   teacherForm: FormGroup | undefined;
+
   constructor(
     private teacherService: TeacherService,
     private fb: FormBuilder
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.getAllTeachers();
@@ -99,6 +102,7 @@ export class TeacherComponent implements OnInit {
       deleted: [false],
     });
   }
+
   selectRow(row: any) {
     this.rowSelected = row;
   }
@@ -151,6 +155,7 @@ export class TeacherComponent implements OnInit {
   handleAddClick() {
     this.buildTeacherForm();
   }
+
   editTeacher(student: any) {
     this.teacher = this.cloneTeacher(student);
     this.teacherForm?.patchValue({
@@ -221,4 +226,19 @@ export class TeacherComponent implements OnInit {
       emailAddress: teacher.emailAddress,
     };
   }
+
+  private statusMap: { [key: string]: string } = {
+    [TeacherMaritalStatus.not_defined]: 'غير معروف',
+    [TeacherMaritalStatus.single]: 'أعزب',
+    [TeacherMaritalStatus.married]: 'متزوج',
+    [TeacherMaritalStatus.divorced]: 'مطلق'
+  };
+
+  getArabicStatus(status: string | null | undefined): string {
+    if (!status)
+      return '';
+    return this.statusMap[status] || status;
+  }
+
+
 }

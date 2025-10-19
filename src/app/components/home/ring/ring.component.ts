@@ -36,11 +36,13 @@ export class RingComponent implements OnInit {
   teachers: Teacher[] = [];
 
   ringForm: FormGroup | undefined;
+
   constructor(
     private ringService: RingService,
     private teacherService: TeacherService,
     private fb: FormBuilder
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.getAllRings();
@@ -89,6 +91,7 @@ export class RingComponent implements OnInit {
       teacherId: [null, Validators.required],
     });
   }
+
   selectRow(row: any) {
     this.rowSelected = row;
   }
@@ -133,8 +136,9 @@ export class RingComponent implements OnInit {
     this.reset();
     this.buildRingForm();
   }
+
   editRing(ring: Ring) {
-    this.ring = { ...ring };
+    this.ring = {...ring};
     this.ringForm?.patchValue({
       id: this.ring.id,
       name: this.ring.name,
@@ -151,7 +155,7 @@ export class RingComponent implements OnInit {
       (data) => {
         this.data = this.data.filter((r) => r.id !== ring.id);
         this.deleteError = null;
-        if(this.rowSelected?.id === ring.id){
+        if (this.rowSelected?.id === ring.id) {
           this.rowSelected = undefined;
         }
       },
@@ -177,6 +181,22 @@ export class RingComponent implements OnInit {
       document.body.classList.remove('modal-open');
       document.body.style.overflow = '';
     }
+  }
+
+  private memorizationPartMap: { [key : string]: string } = {
+    [MemorizationPart.juz]: 'جزء',
+    [MemorizationPart.half_juz]: 'نصف جزء',
+    [MemorizationPart.half_hizb]: 'نصف حزب',
+    [MemorizationPart.quarter_hizb]: 'ربع حزب',
+    [MemorizationPart.two_pages]: 'وجهين',
+    [MemorizationPart.page]: 'وجه',
+    [MemorizationPart.half_page]: 'نصف وجه',
+    [MemorizationPart.five_lines]: 'خمسة أسطر',
+    [MemorizationPart.three_lines]: 'ثلاثة أسطر'
+  };
+
+  getArabicMemorizationPart(grade: string): string {
+    return this.memorizationPartMap[grade] || grade;
   }
 
   protected readonly Period = Period;

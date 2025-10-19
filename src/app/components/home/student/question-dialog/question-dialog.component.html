@@ -10,14 +10,15 @@
     <p class="fw-bold text-white m-0 p-2">سور القرآن</p>
   </div>
   <div class="col-12">
-    <mat-dialog-content>
+    <h2 *ngIf="!studentSurahs || studentSurahs!.length == 0">لم يتم الأختبار فى أى سورة حتى الآن. </h2>
+    <mat-dialog-content *ngIf="studentSurahs">
       <div class="row">
-        @for(question of quranQuestion; track question.surah){
+        @for(completedSurah of studentSurahs; track completedSurah.surah){
         <div class="col-3 mb-2">
           <app-surah-date
-            [surah]="question.surah"
-            [date]="question.date"
-            [rating]="question.rating"
+            [surah]="completedSurah.surah"
+            [successDate]="completedSurah.successDate"
+            [grade]="completedSurah.grade"
           />
         </div>
         }

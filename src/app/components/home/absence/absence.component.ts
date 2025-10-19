@@ -9,7 +9,8 @@ import {AddAbsenceDialogComponent} from "./add-student-absence-dialog/add-studen
 import {NgClass, NgIf} from "@angular/common";
 import {ConfirmDialogComponent} from "../../shared/confirmation/confirmation.component";
 import {Period} from "../../../models/enums/Period.enum";
-import {MaritalStatus} from "../../../models/enums/MaritalStatus.enum";
+import {TeacherMaritalStatus} from "../../../models/enums/TeacherMaritalStatus.enum";
+import {StudentMaritalStatus} from "../../../models/enums/StudentMaritalStatus.enum";
 
 @Component({
   selector: 'app-absence',
@@ -106,6 +107,19 @@ export class AbsenceComponent {
     return typeof status === 'string' && status === value;
   }
 
+  private statusMap: { [key: string]: string } = {
+    [StudentMaritalStatus.not_defined]: 'غير معروف',
+    [StudentMaritalStatus.single_parents]: 'لديه والد',
+    [StudentMaritalStatus.living_parents]: 'لديه والدان',
+    [StudentMaritalStatus.orphan]: 'يتيم'
+  };
+
+  getArabicStatus(status: string | null | undefined): string {
+    if (!status)
+      return '';
+    return this.statusMap[status] || status;
+  }
+
   protected readonly Period = Period;
-  protected readonly MaritalStatus = MaritalStatus;
+  protected readonly StudentMaritalStatus = StudentMaritalStatus;
 }

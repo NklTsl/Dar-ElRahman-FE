@@ -66,6 +66,21 @@
   transition: background-color 0.3s ease; /* Smooth hover transition */
 }
 
+.mark-button {
+  background-color: #90EE90; /* Light green background */
+  color: #000000; /* White text */
+  border: none;
+  border-radius: 8px; /* Rounded corners */
+  padding: 8px 16px; /* Button padding */
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Space between text and icon */
+  font-size: 14px; /* Font size */
+  text-align: center;
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease; /* Smooth hover transition */
+}
+
 .butn {
   height: 40px;
 }

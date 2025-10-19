@@ -22,6 +22,7 @@ import {QuestionDialogComponent} from './question-dialog/question-dialog.compone
 import {SurahsService} from 'src/app/services/surahs/surahs.service';
 import {Period} from "../../../models/enums/Period.enum";
 import {Surah} from "../../../models/Surah.model";
+import {StudentMaritalStatus} from "../../../models/enums/StudentMaritalStatus.enum";
 
 @Component({
   selector: 'app-student',
@@ -41,7 +42,7 @@ export class StudentComponent implements OnInit {
     motherName: '',
     address: '',
     motherPhoneNumber: '',
-    maritalStatus: 'غير معروف',
+    maritalStatus: 'not_defined',
     periodName: '',
     ringId: 1,
     joiningDate: '',
@@ -55,7 +56,7 @@ export class StudentComponent implements OnInit {
     {name: 'First', nameAR: 'الأولى'},
     {name: 'Second', nameAR: 'الثانية'},
     {name: 'Extended', nameAR: 'ممتدة'},
-    {name: 'NOT_DEFINED', nameAR: 'غير معروف'},
+    {name: 'not_defined', nameAR: 'غير معروف'},
   ];
   data = signal<any[] | undefined>(undefined);
   teachers = signal<any[] | undefined>(undefined);
@@ -140,8 +141,8 @@ export class StudentComponent implements OnInit {
     );
   }
 
-  private getAllSurahs() {
-    this.surahsService.getAllSurahs().subscribe(
+  private getCompletedSurahsByStudentId(studentId: number) {
+    this.studentService.getCompletedSurahsByStudentId(studentId).subscribe(
       (response: any) => {
         this.surahs.set(response.data);
       },
@@ -188,7 +189,7 @@ export class StudentComponent implements OnInit {
       motherName: '',
       address: '',
       motherPhoneNumber: '',
-      maritalStatus: 'أعزب',
+      maritalStatus: 'not_defined',
       periodName: '',
       ringId: 1,
       joiningDate: '',
@@ -206,15 +207,6 @@ export class StudentComponent implements OnInit {
     this.student.periodName = this.periods
       .filter((p) => p.nameAR === student.ring.period)
       .map((p) => p.name)[0];
-
-    if (this.student.maritalStatus === 'يتيم')
-      this.student.maritalStatus = 'ORPHAN';
-    else if (this.student.maritalStatus === 'مُطلق')
-      this.student.maritalStatus = 'DIVORCED';
-    else this.student.maritalStatus = 'NOT_DEFINED';
-
-    if (this.student.status === 'متصل') this.student.status = 'CONNECTED';
-    else this.student.status = 'STOPPED';
 
     this.buttonName = 'تعديل';
     if (!this.modalInstance) {
@@ -270,12 +262,14 @@ export class StudentComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log('The dialog was closed');
+      this.getAllStudents();
       if (result !== undefined) {
       }
     });
   }
 
-  openQuestionDialog(studentId?: number) {
+  openQuestionDialog(studentId: number) {
+    this.getCompletedSurahsByStudentId(studentId);
     const dialogRef = this.dialog.open(QuestionDialogComponent, {
       width: '100%',
       maxWidth: '100%',
@@ -290,5 +284,19 @@ export class StudentComponent implements OnInit {
     });
   }
 
+  private statusMap: { [key: string]: string } = {
+    [StudentMaritalStatus.not_defined]: 'غير معروف',
+    [StudentMaritalStatus.single_parents]: 'لديه والد',
+    [StudentMaritalStatus.living_parents]: 'لديه والدان',
+    [StudentMaritalStatus.orphan]: 'يتيم'
+  };
+
+  getArabicStatus(status: string | null | undefined): string {
+    if (!status)
+      return '';
+    return this.statusMap[status] || status;
+  }
+
   protected readonly Period = Period;
+  protected StudentMaritalStatus = StudentMaritalStatus;
 }

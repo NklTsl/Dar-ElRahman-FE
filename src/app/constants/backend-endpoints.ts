@@ -9,4 +9,7 @@ export class BackendEndpoints {
   public static absence = '/api/v1/absences';
   public static questionnaire = '/api/v1/questionnaires';
   public static student_questionnaire = '/api/v1/student-questionnaires';
+  public static teacher_result = '/api/v1/teacher-results';
+  public static graduates = '/api/v1/graduates';
+  public static tuitions = '/api/v1/tuitions';
 }

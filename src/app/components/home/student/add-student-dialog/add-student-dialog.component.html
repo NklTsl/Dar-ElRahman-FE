@@ -16,7 +16,7 @@
           <mat-form-field class="w-100" appearance="outline">
             <mat-label>الاسم رباعى</mat-label>
             <input matInput formControlName="fullName" id="fullName" type="text">
-            @if(studentForm.controls['fullName'].touched && studentForm.controls['fullName'].hasError('required')){
+            @if (studentForm.controls['fullName'].touched && studentForm.controls['fullName'].hasError('required')) {
               <mat-error class="small text-danger">الرجاء إدخال الإسم</mat-error>
             }
           </mat-form-field>
@@ -25,7 +25,7 @@
           <mat-form-field class="w-100" appearance="outline">
             <mat-label>الرقم القومي</mat-label>
             <input matInput formControlName="nationalId" id="nationalId" type="text">
-            @if(studentForm.controls['nationalId'].touched && studentForm.controls['nationalId'].hasError('required')){
+            @if (studentForm.controls['nationalId'].touched && studentForm.controls['nationalId'].hasError('required')) {
               <mat-error class="small text-danger">الرجاء إدخال الرقم القومي</mat-error>
             }
           </mat-form-field>
@@ -34,7 +34,7 @@
           <mat-form-field class="w-100" appearance="outline">
             <mat-label>إسم الأم</mat-label>
             <input matInput formControlName="motherName" id="motherName" type="text">
-            @if(studentForm.controls['motherName'].touched && studentForm.controls['motherName'].hasError('required')){
+            @if (studentForm.controls['motherName'].touched && studentForm.controls['motherName'].hasError('required')) {
               <mat-error class="small text-danger">الرجاء إدخال إسم الأم</mat-error>
             }
           </mat-form-field>
@@ -43,7 +43,7 @@
           <mat-form-field class="w-100" appearance="outline">
             <mat-label>تليفون الأم</mat-label>
             <input matInput formControlName="motherPhoneNumber" id="motherPhoneNumber" type="text">
-            @if(studentForm.controls['motherPhoneNumber'].touched && studentForm.controls['motherPhoneNumber'].hasError('required')){
+            @if (studentForm.controls['motherPhoneNumber'].touched && studentForm.controls['motherPhoneNumber'].hasError('required')) {
               <mat-error class="small text-danger">الرجاء إدخال تليفون الأم</mat-error>
             }
           </mat-form-field>
@@ -52,7 +52,7 @@
           <mat-form-field class="w-100" appearance="outline">
             <mat-label>العنوان</mat-label>
             <input matInput formControlName="address" id="address" type="text">
-            @if(studentForm.controls['address'].touched && studentForm.controls['address'].hasError('required')){
+            @if (studentForm.controls['address'].touched && studentForm.controls['address'].hasError('required')) {
               <mat-error class="small text-danger">الرجاء إدخال العنوان</mat-error>
             }
           </mat-form-field>
@@ -61,11 +61,12 @@
           <mat-form-field class="w-100" appearance="outline">
             <mat-label>الحالة الإجتماعية</mat-label>
             <mat-select formControlName="maritalStatus" required>
-              <mat-option value="ORPHAN">يتيم</mat-option>
-              <mat-option value="DIVORCED">مُطلق</mat-option>
-              <mat-option value="NOT_DEFINED">غير معروف</mat-option>
+              <mat-option value="orphan">يتيم</mat-option>
+              <mat-option value="single_parents">لديه والد</mat-option>
+              <mat-option value="living_parents">لديه والدان</mat-option>
+              <mat-option value="not_defined">غير معروف</mat-option>
             </mat-select>
-            @if(studentForm.controls['maritalStatus'].touched && studentForm.controls['maritalStatus'].hasError('required')){
+            @if (studentForm.controls['maritalStatus'].touched && studentForm.controls['maritalStatus'].hasError('required')) {
               <mat-error class="small text-danger">الرجاء إختيار الحالة الإجتماعية</mat-error>
             }
           </mat-form-field>
@@ -74,10 +75,10 @@
           <mat-form-field class="w-100" appearance="outline">
             <mat-label>الحالة</mat-label>
             <mat-select formControlName="status" required>
-              <mat-option value="CONNECTED">متصل</mat-option>
-              <mat-option value="STOPPED">منقطع</mat-option>
+              <mat-option value="connected">متصل</mat-option>
+              <mat-option value="stopped">منقطع</mat-option>
             </mat-select>
-            @if(studentForm.controls['status'].touched && studentForm.controls['status'].hasError('required')){
+            @if (studentForm.controls['status'].touched && studentForm.controls['status'].hasError('required')) {
               <mat-error class="small text-danger">الرجاء إختيار الحالة</mat-error>
             }
           </mat-form-field>
@@ -86,11 +87,11 @@
           <mat-form-field class="w-100" appearance="outline">
             <mat-label>الفترة</mat-label>
             <mat-select formControlName="periodName" required>
-              @for(period of data.periods; track period.name){
-                <mat-option [value]="period.name">{{period.nameAR}}</mat-option>
+              @for (period of data.periods; track period.name) {
+                <mat-option [value]="period.name">{{ period.nameAR }}</mat-option>
               }
             </mat-select>
-            @if(studentForm.controls['periodName'].touched && studentForm.controls['periodName'].hasError('required')){
+            @if (studentForm.controls['periodName'].touched && studentForm.controls['periodName'].hasError('required')) {
               <mat-error class="small text-danger">الرجاء إختيار الفترة</mat-error>
             }
           </mat-form-field>
@@ -99,11 +100,11 @@
           <mat-form-field class="w-100" appearance="outline">
             <mat-label>الحلقة</mat-label>
             <mat-select formControlName="ringId" required>
-              @for(ring of data.rings; track ring.id){
-                <mat-option [value]="ring.id">{{ring.name}}</mat-option>
+              @for (ring of data.rings; track ring.id) {
+                <mat-option [value]="ring.id">{{ ring.name }}</mat-option>
               }
             </mat-select>
-            @if(studentForm.controls['ringId'].touched && studentForm.controls['ringId'].hasError('required')){
+            @if (studentForm.controls['ringId'].touched && studentForm.controls['ringId'].hasError('required')) {
               <mat-error class="small text-danger">الرجاء إختيار الحلقة</mat-error>
             }
           </mat-form-field>
@@ -114,7 +115,7 @@
             <input matInput formControlName="joiningDate" [matDatepicker]="joiningPicker" readonly>
             <mat-datepicker-toggle matIconSuffix [for]="joiningPicker"></mat-datepicker-toggle>
             <mat-datepicker #joiningPicker></mat-datepicker>
-            @if(studentForm.controls['joiningDate'].touched && studentForm.controls['joiningDate'].hasError('required')){
+            @if (studentForm.controls['joiningDate'].touched && studentForm.controls['joiningDate'].hasError('required')) {
               <mat-error class="small text-danger">الرجاء إختيار التاريخ</mat-error>
             }
           </mat-form-field>
@@ -125,7 +126,7 @@
             <input matInput formControlName="birthDate" [matDatepicker]="dobPicker" readonly>
             <mat-datepicker-toggle matIconSuffix [for]="dobPicker"></mat-datepicker-toggle>
             <mat-datepicker #dobPicker></mat-datepicker>
-            @if(studentForm.controls['birthDate'].touched && studentForm.controls['birthDate'].hasError('required')){
+            @if (studentForm.controls['birthDate'].touched && studentForm.controls['birthDate'].hasError('required')) {
               <mat-error class="small text-danger">الرجاء إختيار التاريخ</mat-error>
             }
           </mat-form-field>
@@ -134,7 +135,7 @@
           <mat-form-field class="w-100" appearance="outline">
             <mat-label>تليفون الأب</mat-label>
             <input matInput formControlName="fatherPhoneNumber" id="fatherPhoneNumber" type="text">
-            @if(studentForm.controls['fatherPhoneNumber'].touched && studentForm.controls['fatherPhoneNumber'].hasError('required')){
+            @if (studentForm.controls['fatherPhoneNumber'].touched && studentForm.controls['fatherPhoneNumber'].hasError('required')) {
               <mat-error class="small text-danger">الرجاء إدخال تليفون الأب</mat-error>
             }
           </mat-form-field>
@@ -143,7 +144,7 @@
           <mat-form-field class="w-100" appearance="outline">
             <mat-label>البريد الإلكتروني للأب</mat-label>
             <input matInput formControlName="fatherEmailAddress" id="fatherEmailAddress" type="text">
-            @if(studentForm.controls['fatherEmailAddress'].touched && studentForm.controls['fatherEmailAddress'].hasError('required')){
+            @if (studentForm.controls['fatherEmailAddress'].touched && studentForm.controls['fatherEmailAddress'].hasError('required')) {
               <mat-error class="small text-danger">الرجاء إدخال البريد الإلكتروني للأب</mat-error>
             }
           </mat-form-field>
@@ -163,7 +164,7 @@
         (click)="onSubmit()"
         mat-button
       >
-        {{ student ? 'تعديل' : 'إضافة'}}
+        {{ student ? 'تعديل' : 'إضافة' }}
       </button>
     </mat-dialog-actions>
   </div>

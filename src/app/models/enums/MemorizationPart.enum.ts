@@ -1,5 +1,4 @@
 export enum MemorizationPart {
-  not_defined = 'not_defined',
   three_lines = 'three_lines',
   five_lines = 'five_lines',
   half_page = 'half_page',

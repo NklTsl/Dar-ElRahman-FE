@@ -3,7 +3,7 @@
   <!-- Ring Details Section -->
   <div class="card">
     <div class="card-body">
-      <h3 class="card-title">تفاصيل الحلقة</h3>
+      <h3 class="card-title">بيانات الحلقة</h3>
       <p class="d-flex justify-content-between">
         <strong>رقم المسلسل:</strong> {{ rowSelected.id }}
       </p>
@@ -52,7 +52,7 @@
         <div *ngIf="error" class="alert alert-danger">
           {{ error.error.errorDescription }}
         </div>
-        <h5 class="modal-title" id="ringModalLabel">تفاصيل الحلقة</h5>
+        <h5 class="modal-title" id="ringModalLabel">بيانات الحلقة</h5>
       </div>
       <div class="modal-body">
         <form
@@ -192,6 +192,7 @@
         <th>اسم الحلقة</th>
         <th>عدد الطلاب</th>
         <th>الفترة</th>
+        <th>جزء الحفظ</th>
         <th>اسم المُعلم</th>
         <th>العمليات</th>
       </tr>
@@ -209,7 +210,7 @@
           <div class="d-flex justify-content-between">
             <button class="btn-sm details-button" (click)="selectRow(row)">
               <i class="fa fa-eye"></i>
-              <span>التفاصيل</span>
+              <span>البيانات</span>
             </button>
 
             <button

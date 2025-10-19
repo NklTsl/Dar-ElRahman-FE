@@ -1,7 +1,7 @@
 import {Ring} from "./Ring.model";
 import {BaseAuditModel} from "./BaseAuditModel.model";
 import {Status} from "./enums/Status.enum";
-import {MaritalStatus} from "./enums/MaritalStatus.enum";
+import {StudentMaritalStatus} from "./enums/StudentMaritalStatus.enum";
 
 export interface Student extends BaseAuditModel {
   id?: number;
@@ -10,7 +10,7 @@ export interface Student extends BaseAuditModel {
   birthDate?: string;
   status?: Status;
   address?: string;
-  maritalStatus?: MaritalStatus;
+  maritalStatus?: StudentMaritalStatus;
   joiningDate?: string;
   fatherPhoneNumber?: string;
   fatherEmailAddress?: string;

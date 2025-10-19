@@ -1,73 +1,73 @@
-@if(rowSelected){
-<div class="d-flex justify-content-between details-container">
-  <div class="card">
-    <div class="card-body">
-      <h3 class="card-title">تفاصيل الطالب</h3>
-      <p class="d-flex justify-content-between">
-        <strong>رقم المسلسل:</strong> {{ rowSelected.id }}
-      </p>
-      <p class="d-flex justify-content-between">
-        <strong>الاسم رباعي:</strong> {{ rowSelected.fullName }}
-      </p>
-      <p class="d-flex justify-content-between">
-        <strong>الرقم القومي:</strong> {{ rowSelected.nationalId }}
-      </p>
-      <p class="d-flex justify-content-between">
-        <strong>الحالة:</strong>
-        <span
-          class="green-status"
-          [ngClass]="{
-            'green-status': rowSelected.status === 'CONNECTED',
-            'green-danger': rowSelected.status === 'STOPPED'
+@if (rowSelected) {
+  <div class="d-flex justify-content-between details-container">
+    <div class="card">
+      <div class="card-body">
+        <h3 class="card-title">بيانات الطالب</h3>
+        <p class="d-flex justify-content-between">
+          <strong>رقم المسلسل:</strong> {{ rowSelected.id }}
+        </p>
+        <p class="d-flex justify-content-between">
+          <strong>الاسم رباعي:</strong> {{ rowSelected.fullName }}
+        </p>
+        <p class="d-flex justify-content-between">
+          <strong>الرقم القومي:</strong> {{ rowSelected.nationalId }}
+        </p>
+        <p class="d-flex justify-content-between">
+          <strong>الحالة:</strong>
+          <span
+            class="green-status"
+            [ngClass]="{
+            'green-status': rowSelected.status === 'connected',
+            'green-danger': rowSelected.status === 'stopped'
           }"
-          >{{ rowSelected.status === "STOPPED" ? "منقطع" : "متصل" }}</span
-        >
-      </p>
-      <p class="d-flex justify-content-between">
-        <strong>سور القرآن</strong>
-        <button class="btn-sm details-button" (click)="openQuestionDialog()">
-          <i class="fa fa-eye"></i>
-        </button>
-      </p>
+          >{{ rowSelected.status === "stopped" ? "منقطع" : "متصل" }}</span
+          >
+        </p>
+        <p class="d-flex justify-content-between">
+          <strong>سور القرآن</strong>
+          <button class="btn-sm details-button" (click)="openQuestionDialog(rowSelected.id)">
+            <i class="fa fa-eye"></i>
+          </button>
+        </p>
+      </div>
     </div>
-  </div>
 
-  <div class="card">
-    <div class="card-body">
-      <h3 class="card-title">تفاصيل التواصل</h3>
-      <p class="card-text d-flex justify-content-between">
-        <strong>تليفون الأب:</strong> {{ rowSelected.fatherPhoneNumber }}
-      </p>
-      <p class="card-text d-flex justify-content-between">
-        <strong>تليفون الأم:</strong> {{ rowSelected.motherPhoneNumber }}
-      </p>
-      <p class="card-text d-flex justify-content-between">
-        <strong>العنوان:</strong>{{ rowSelected.address }}
-      </p>
+    <div class="card">
+      <div class="card-body">
+        <h3 class="card-title">بيانات التواصل</h3>
+        <p class="card-text d-flex justify-content-between">
+          <strong>تليفون الأب:</strong> {{ rowSelected.fatherPhoneNumber }}
+        </p>
+        <p class="card-text d-flex justify-content-between">
+          <strong>تليفون الأم:</strong> {{ rowSelected.motherPhoneNumber }}
+        </p>
+        <p class="card-text d-flex justify-content-between">
+          <strong>العنوان:</strong>{{ rowSelected.address }}
+        </p>
+      </div>
     </div>
-  </div>
 
-  <div class="card">
-    <div class="card-body">
-      <h3 class="card-title">تفاصيل أخرى</h3>
-      <p class="card-text d-flex justify-content-between">
-        <strong>الحالة الاجتماعية:</strong> {{ rowSelected.maritalStatus }}
-      </p>
-      <p class="d-flex justify-content-between">
-        <strong>الفصل:</strong> {{ rowSelected.ring.teacherName }}
-      </p>
-      <p class="card-text d-flex justify-content-between">
-        <strong>تاريخ الالتحاق:</strong> {{ rowSelected.joiningDate }}
-      </p>
-      <p class="card-text d-flex justify-content-between">
-        <strong>تاريخ الميلاد:</strong>{{ rowSelected.birthDate }}
-      </p>
-      <p class="d-flex justify-content-between">
-        <strong>الفترة:</strong> {{ rowSelected.ring.period === Period.first ? 'أولى' : (rowSelected.ring.period === Period.second ? 'ثانية' : 'ممتدة') }}
-      </p>
+    <div class="card">
+      <div class="card-body">
+        <h3 class="card-title">بيانات أخرى</h3>
+        <p class="card-text d-flex justify-content-between">
+          <strong>الحالة الاجتماعية:</strong> {{ getArabicStatus(rowSelected.maritalStatus) }}
+        </p>
+        <p class="d-flex justify-content-between">
+          <strong>الفصل:</strong> {{ rowSelected.ring.teacherName }}
+        </p>
+        <p class="card-text d-flex justify-content-between">
+          <strong>تاريخ الالتحاق:</strong> {{ rowSelected.joiningDate }}
+        </p>
+        <p class="card-text d-flex justify-content-between">
+          <strong>تاريخ الميلاد:</strong>{{ rowSelected.birthDate }}
+        </p>
+        <p class="d-flex justify-content-between">
+          <strong>الفترة:</strong> {{ rowSelected.ring.period === Period.first ? 'أولى' : (rowSelected.ring.period === Period.second ? 'ثانية' : 'ممتدة') }}
+        </p>
+      </div>
     </div>
   </div>
-</div>
 }
 
 <button
@@ -79,64 +79,59 @@
 </button>
 
 <div class="table-container">
-  (<h2 *ngIf="!data() || data()!.length == 0">لم يتم تسجيل أي طلبة حتى الآن. </h2>)
+  <h2 *ngIf="!data() || data()!.length == 0">لم يتم تسجيل أي طلبة حتى الآن. </h2>
   <table class="custom-table" style="text-align: center" *ngIf="data() && data()!.length > 0">
     <thead class="thead-dark">
-      <tr>
-        <th>رقم المسلسل</th>
-        <th>الاسم رباعي</th>
-        <th>الرقم القومي</th>
-        <th>الحالة</th>
-        <th>الفترة</th>
-        <th>الفصل</th>
-        <th>العمليات</th>
-      </tr>
+    <tr>
+      <th>رقم المسلسل</th>
+      <th>الاسم رباعي</th>
+      <th>الحالة</th>
+      <th>الفترة</th>
+      <th>الفصل</th>
+      <th>العمليات</th>
+    </tr>
     </thead>
     <tbody>
-      @for(row of data(); track row.id;){
-      <tr>
-        <td>{{ row.id }}</td>
-        <td>{{ row.fullName }}</td>
-        <td>{{ row.nationalId }}</td>
-        <td>
+      @for (row of data(); track row.id; ) {
+        <tr>
+          <td>{{ row.id }}</td>
+          <td>{{ row.fullName }}</td>
+          <td>
           <span
             class="badge"
             [ngClass]="{
-              'green-status': row.status == 'CONNECTED',
-              'danger-status': row.status === 'STOPPED'
+              'green-status': row.status == 'connected',
+              'danger-status': row.status === 'stopped'
             }"
-            >{{ row.status === "STOPPED" ? "منقطع" : "متصل" }}</span
+          >{{ row.status === "stopped" ? "منقطع" : "متصل" }}</span
           >
-        </td>
-        <td>{{ row.ring.period === Period.first ? 'أولى' : (row.ring.period === Period.second ? 'ثانية' : 'ممتدة') }}</td>
-        <td>{{ row.ring.teacherName }}</td>
-        <td>
-          <!-- <button class="btn-sm details-button" (click)="selectRow(row)">
-              التفاصيل
-            </button> -->
-          <div class="d-flex justify-content-between">
-            <button class="btn-sm details-button" (click)="selectRow(row)">
-              <i class="fa fa-eye"></i>
-              <span>التفاصيل</span>
-            </button>
+          </td>
+          <td>{{ row.ring.period === Period.first ? 'أولى' : (row.ring.period === Period.second ? 'ثانية' : 'ممتدة') }}</td>
+          <td>{{ row.ring.teacherName }}</td>
+          <td>
+            <div class="d-flex justify-content-between">
+              <button class="btn-sm details-button" (click)="selectRow(row)">
+                <i class="fa fa-eye"></i>
+                <span>البيانات</span>
+              </button>
 
-            <button
-              class="btn-sm edit-button"
-              (click)="handleEditClick(row)"
-              data-bs-toggle="modal"
-              data-bs-target="#studentModal"
-            >
-              <i class="fa fa-eye"></i>
-              <span>تعديل</span>
-            </button>
+              <button
+                class="btn-sm edit-button"
+                (click)="handleEditClick(row)"
+                data-bs-toggle="modal"
+                data-bs-target="#studentModal"
+              >
+                <i class="fa fa-eye"></i>
+                <span>تعديل</span>
+              </button>
 
-            <button class="btn-sm delete-button" (click)="deleteStudent(row)">
-              <i class="fa fa-eye"></i>
-              <span>حذف</span>
-            </button>
-          </div>
-        </td>
-      </tr>
+              <button class="btn-sm delete-button" (click)="deleteStudent(row)">
+                <i class="fa fa-eye"></i>
+                <span>حذف</span>
+              </button>
+            </div>
+          </td>
+        </tr>
       }
     </tbody>
   </table>
@@ -157,7 +152,7 @@
         <div *ngIf="error" class="alert alert-danger">
           {{ error.error.errorDescription }}
         </div>
-        <h5 class="modal-title" id="studentModalLabel">تفاصيل الطالب</h5>
+        <h5 class="modal-title" id="studentModalLabel">بيانات الطالب</h5>
       </div>
       <div class="modal-body">
         <form #studentForm="ngForm" (ngSubmit)="onSubmit()">
@@ -229,7 +224,7 @@
 
           <div class="mb-3">
             <label class="form-label" for="maritalStatus"
-              >الحالة الاجتماعية:</label
+            >الحالة الاجتماعية:</label
             >
             <select
               class="form-control"
@@ -237,9 +232,10 @@
               [(ngModel)]="student.maritalStatus"
               name="maritalStatus"
             >
-              <option value="ORPHAN">يتيم</option>
-              <option value="DIVORCED">مُطلق</option>
-              <option value="NOT_DEFINED">غير معروف</option>
+              <option value="orphan">يتيم</option>
+              <option value="single_parents">لديه والد</option>
+              <option value="living_parents">لديه والدان</option>
+              <option value="not_defined">غير معروف</option>
             </select>
           </div>
 
@@ -274,8 +270,8 @@
               [(ngModel)]="student.status"
               name="status"
             >
-              <option value="CONNECTED">متصل</option>
-              <option value="STOPPED">منقطع</option>
+              <option value="connected">متصل</option>
+              <option value="stopped">منقطع</option>
             </select>
           </div>
 

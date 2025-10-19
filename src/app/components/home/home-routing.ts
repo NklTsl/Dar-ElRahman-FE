@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+import {Routes} from '@angular/router';
 import {AppRoutes} from "../../constants/app-routes";
 
 export const HOME_CHILDREN_ROUTES: Routes = [
@@ -49,6 +49,27 @@ export const HOME_CHILDREN_ROUTES: Routes = [
     loadComponent: () =>
       import('./student-questionnaire/student-questionnaire.component').then(
         (c) => c.StudentQuestionnaireComponent,
+      ),
+  },
+  {
+    path: AppRoutes.TEACHER_RESULT,
+    loadComponent: () =>
+      import('./teacher-result/teacher-result.component').then(
+        (c) => c.TeacherResultComponent,
+      ),
+  },
+  {
+    path: AppRoutes.GRADUATES,
+    loadComponent: () =>
+      import('./graduate/graduate.component').then(
+        (c) => c.GraduateComponent,
+      ),
+  },
+  {
+    path: AppRoutes.TUITIONS,
+    loadComponent: () =>
+      import('./tuition/tuition.component').then(
+        (c) => c.TuitionComponent,
       ),
   },
   {

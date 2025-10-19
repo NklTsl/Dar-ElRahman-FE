@@ -28,6 +28,10 @@ export class StudentQuestionnaireService {
     return this.http.delete<void>(`${environment.memoApiUrl}${BackendEndpoints.student_questionnaire}/${id}`);
   }
 
+  markStudentQuestionnaireAsDone(id: number): Observable<StudentQuestionnaire> {
+    return this.http.put<StudentQuestionnaire>(`${environment.memoApiUrl}${BackendEndpoints.student_questionnaire}/${id}`, null);
+  }
+
   getQuestionnairesByRing(ringId: number): Observable<any> {
     // Assuming an endpoint like this exists. We may need to adjust it.
     return this.http.get<any>(`${environment.memoApiUrl}${BackendEndpoints.student_questionnaire}/questionnaires/ring/${ringId}`);

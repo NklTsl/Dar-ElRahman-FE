@@ -1,5 +1,5 @@
 import {BaseAuditModel} from "./BaseAuditModel.model";
-import {MaritalStatus} from "./enums/MaritalStatus.enum";
+import {TeacherMaritalStatus} from "./enums/TeacherMaritalStatus.enum";
 
 export interface Teacher extends BaseAuditModel {
   id?: number; // Optional because it might be auto-generated
@@ -9,7 +9,7 @@ export interface Teacher extends BaseAuditModel {
   emailAddress?: string; // Optional, must match EMAIL_PATTERN
   address?: string; // Optional
   birthDate?: string; // Optional, format: yyyy-MM-dd
-  maritalStatus?: MaritalStatus; // Enum type
+  maritalStatus?: TeacherMaritalStatus; // Enum type
   profession?: string; // Optional
   educationalQualification?: string; // Optional
   qualificationDate?: string; // Optional, format: yyyy-MM

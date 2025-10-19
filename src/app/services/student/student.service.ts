@@ -1,14 +1,15 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { BackendEndpoints } from 'src/app/constants/backend-endpoints';
-import { environment } from 'src/environments/environment';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {BackendEndpoints} from 'src/app/constants/backend-endpoints';
+import {environment} from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StudentService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
   getAllStudent(): Observable<any> {
     return this.http.get<any>(
@@ -39,6 +40,24 @@ export class StudentService {
   getStudentsNotInQuestionnaire(questionnaireId: number): Observable<any> {
     return this.http.get<any>(
       `${environment.memoApiUrl}${BackendEndpoints.student}/not-in-questionnaire/${questionnaireId}`
+    );
+  }
+
+  getNonGraduateStudents(): Observable<any> {
+    return this.http.get<any>(
+      `${environment.memoApiUrl}${BackendEndpoints.student}/non-graduates`
+    );
+  }
+
+  getCompletedSurahsByStudentId(studentId: number): Observable<any> {
+    return this.http.get<any>(
+      `${environment.memoApiUrl}${BackendEndpoints.student}/${studentId}/completed-surah`
+    );
+  }
+
+  getNonTuitionStudents(): Observable<any> {
+    return this.http.get<any>(
+      `${environment.memoApiUrl}${BackendEndpoints.student}/non-graduates`
     );
   }
 }

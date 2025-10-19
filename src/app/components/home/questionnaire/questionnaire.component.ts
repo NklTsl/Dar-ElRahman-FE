@@ -1,13 +1,13 @@
-import { CommonModule } from '@angular/common';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Modal } from 'bootstrap';
-import { Questionnaire } from 'src/app/models/Questionnaire.model';
-import { Ring } from 'src/app/models/Ring.model';
-import { Surah } from 'src/app/models/Surah.model';
-import { QuestionnaireService } from 'src/app/services/questionnaire/questionnaire.service';
-import { RingService } from 'src/app/services/ring/ring.service';
-import { SurahsService } from 'src/app/services/surahs/surahs.service';
+import {CommonModule} from '@angular/common';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
+import {Modal} from 'bootstrap';
+import {Questionnaire} from 'src/app/models/Questionnaire.model';
+import {Ring} from 'src/app/models/Ring.model';
+import {Surah} from 'src/app/models/Surah.model';
+import {QuestionnaireService} from 'src/app/services/questionnaire/questionnaire.service';
+import {RingService} from 'src/app/services/ring/ring.service';
+import {SurahsService} from 'src/app/services/surahs/surahs.service';
 import {QuestionnaireType} from "../../../models/enums/QuestionnaireType.enum";
 import {QuestionType} from "../../../models/enums/QuestionType.enum.js";
 
@@ -44,7 +44,8 @@ export class QuestionnaireComponent implements OnInit {
     private ringService: RingService,
     private surahService: SurahsService,
     private fb: FormBuilder
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.getAllQuestionnaires();
@@ -128,11 +129,11 @@ export class QuestionnaireComponent implements OnInit {
 
   reset() {
     this.questionnaire = {
-        questionnaireType: QuestionnaireType.memorization,
-        questionType: QuestionType.first,
-        questionDate: new Date(),
-        currentSurah: undefined,
-        ring: undefined
+      questionnaireType: QuestionnaireType.memorization,
+      questionType: QuestionType.first,
+      questionDate: new Date(),
+      currentSurah: undefined,
+      ring: undefined
     };
     this.buttonName = 'إضافة';
   }
@@ -143,7 +144,7 @@ export class QuestionnaireComponent implements OnInit {
   }
 
   editQuestionnaire(questionnaire: Questionnaire) {
-    this.questionnaire = { ...questionnaire };
+    this.questionnaire = {...questionnaire};
     this.questionnaireForm?.patchValue({
       id: this.questionnaire.id,
       questionnaireType: this.questionnaire.questionnaireType,
@@ -160,7 +161,7 @@ export class QuestionnaireComponent implements OnInit {
       (data) => {
         this.data = this.data.filter((q) => q.id !== questionnaire.id);
         this.deleteError = null;
-        if(this.rowSelected?.id === questionnaire.id){
+        if (this.rowSelected?.id === questionnaire.id) {
           this.rowSelected = undefined;
         }
       },
@@ -168,6 +169,19 @@ export class QuestionnaireComponent implements OnInit {
         this.deleteError = error;
       }
     );
+  }
+
+  markStudentQuestionnaireAsDone(questionnaire: Questionnaire): void {
+    if (confirm('Are you sure you want to mark this questionnaire as done?')) {
+      this.questionnaireService.markStudentQuestionnaireAsDone(questionnaire).subscribe({
+        next: () => {
+          this.getAllQuestionnaires();
+        },
+        error: (error) => {
+          console.error('Failed to mark questionnaire as done', error);
+        }
+      });
+    }
   }
 
   ngAfterViewInit() {
@@ -187,6 +201,7 @@ export class QuestionnaireComponent implements OnInit {
       document.body.style.overflow = '';
     }
   }
+
   protected readonly QuestionnaireType = QuestionnaireType;
   protected readonly QuestionType = QuestionType;
 

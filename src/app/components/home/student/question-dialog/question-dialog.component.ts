@@ -1,63 +1,49 @@
-import { Component, Inject, inject, OnInit } from '@angular/core';
+import {Component, Inject, inject, OnInit} from '@angular/core';
 import {
   MAT_DIALOG_DATA,
   MatDialogModule,
   MatDialogRef,
 } from '@angular/material/dialog';
-import { SurahDateComponent } from '../surah-date/surah-date.component';
+import {SurahDateComponent} from '../surah-date/surah-date.component';
+import {StudentService} from "../../../../services/student/student.service";
+import {StudentSurah} from "../../../../models/StudentSurah.model";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-question-dialog',
-  imports: [MatDialogModule, SurahDateComponent],
+  imports: [MatDialogModule, SurahDateComponent, NgIf],
   templateUrl: './question-dialog.component.html',
   styleUrl: './question-dialog.component.scss',
 })
 export class QuestionDialogComponent implements OnInit {
 
-  quranQuestion = [
-    {
-      surah: "البقرة",
-      date: "26/04/2025",
-      rating: "جيد جدا"
-    },
-    {
-      surah: "آل عمران",
-      date: "30/03/2025",
-      rating: "جيد جدا"
-    },
-    {
-      surah: "النساء",
-      date: "10/01/2025",
-      rating: "جيد جدا"
-    },
-    {
-      surah: "المائدة",
-      date: "12/12/2024",
-      rating: "ممتاز"
-    },
-    {
-      surah: "الأنعام",
-      date: "02/06/2024",
-      rating: "جيد"
-    },
-    {
-      surah: "الأعراف",
-      date: "21/05/2024",
-      rating: "ممتاز"
-    },
-    {
-      surah: "هود",
-      date: "26/02/2024",
-      rating: "جيد جدا"
-    }
-  ]
-
+  studentSurahs: StudentSurah[] = []
 
   readonly dialogRef = inject(MatDialogRef<QuestionDialogComponent>);
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: { studentId: number | undefined }
-  ) {}
+    @Inject(MAT_DIALOG_DATA) public data: { studentId: number | undefined },
+    private studentService: StudentService
+  ) {
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log("The data is", this.data)
+    if (this.data.studentId) {
+      this.getCompletedSurahsByStudentId(this.data.studentId);
+    } else {
+      console.warn('No studentId passed to QuestionDialogComponent');
+    }
+  }
+
+  getCompletedSurahsByStudentId(studentId: number) {
+    this.studentService.getCompletedSurahsByStudentId(studentId).subscribe(
+      (response: any) => {
+        this.studentSurahs = response.data;
+      },
+      (error) => {
+        console.error('Student surahs fetch failed', error);
+      }
+    );
+  }
 }
