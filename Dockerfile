@@ -13,7 +13,7 @@ RUN npm run build:prod
 # Step 2: Serve with NGINX
 FROM nginx:1.27-alpine
 # Copy the build output to NGINX html directory
-COPY --from=build /app/dist/dar-el-rahman /usr/share/nginx/html
+COPY --from=build /app/dist/dar-el-rahman/browser /usr/share/nginx/html
 
 # Copy a custom NGINX config (optional, see below)
 COPY nginx.conf /etc/nginx/conf.d/default.conf
