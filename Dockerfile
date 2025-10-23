@@ -12,6 +12,10 @@ RUN npm run build:prod
 
 # Step 2: Serve with NGINX
 FROM nginx:1.27-alpine
+
+# Copy NGINX config template (with ${PORT})
+COPY nginx.conf /etc/nginx/templates/default.conf.template
+
 # Copy the build output to NGINX html directory
 COPY --from=build /app/dist/dar-el-rahman/browser /usr/share/nginx/html
 
