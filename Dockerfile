@@ -8,7 +8,7 @@ RUN npm ci
 
 # Copy the rest of the project and build for production
 COPY . .
-RUN npm npm run build:prod
+RUN npm run build:prod
 
 # Step 2: Serve with NGINX
 FROM nginx:1.27-alpine
