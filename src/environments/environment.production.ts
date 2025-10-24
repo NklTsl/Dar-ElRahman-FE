@@ -1,5 +1,5 @@
 export const environment = {
   env: 'prod',
   production: true,
-  memoApiUrl: 'http://the-most-merciful-servants.railway.internal/memo-api'
+  memoApiUrl: 'https://the-most-merciful-servants-production.up.railway.app/memo-api'
 };
