@@ -7,6 +7,7 @@ import {QuestionnaireResult} from "./QuestionnaireResult.model";
 
 export interface Questionnaire extends BaseAuditModel {
   id?: number;
+  name?: string;
   questionnaireType?: QuestionnaireType;
   fromVerse?: number;
   toVerse?: number;

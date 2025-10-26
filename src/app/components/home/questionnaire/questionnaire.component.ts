@@ -28,6 +28,7 @@ export class QuestionnaireComponent implements OnInit {
   rowSelected: Questionnaire | undefined;
   buttonName = 'إضافة';
   questionnaire: Questionnaire = {
+    name: '',
     questionnaireType: QuestionnaireType.memorization,
     questionType: QuestionType.first,
     questionDate: new Date(),
@@ -91,6 +92,7 @@ export class QuestionnaireComponent implements OnInit {
   buildQuestionnaireForm() {
     this.questionnaireForm = this.fb.group({
       id: [null],
+      name: '',
       questionnaireType: [QuestionnaireType.memorization, Validators.required],
       questionType: [QuestionType.first, Validators.required],
       questionDate: [new Date(), Validators.required],
@@ -105,7 +107,14 @@ export class QuestionnaireComponent implements OnInit {
 
   onSubmit() {
     if (this.buttonName === 'إضافة') {
-      this.questionnaireService.addQuestionnaire(this.questionnaireForm?.value).subscribe(
+      const formValue = this.questionnaireForm?.value;
+      const payload = {
+        ...formValue,
+        ringId: formValue.ring?.id ?? null,
+        currentSurahId: formValue.currentSurah?.id ?? null
+      };
+
+      this.questionnaireService.addQuestionnaire(payload).subscribe(
         (response) => {
           this.getAllQuestionnaires();
           this.closeModal();
@@ -129,6 +138,7 @@ export class QuestionnaireComponent implements OnInit {
 
   reset() {
     this.questionnaire = {
+      name: '',
       questionnaireType: QuestionnaireType.memorization,
       questionType: QuestionType.first,
       questionDate: new Date(),
@@ -147,6 +157,7 @@ export class QuestionnaireComponent implements OnInit {
     this.questionnaire = {...questionnaire};
     this.questionnaireForm?.patchValue({
       id: this.questionnaire.id,
+      name: this.questionnaire.name,
       questionnaireType: this.questionnaire.questionnaireType,
       questionType: this.questionnaire.questionType,
       questionDate: this.questionnaire.questionDate,
@@ -206,6 +217,9 @@ export class QuestionnaireComponent implements OnInit {
   protected readonly QuestionType = QuestionType;
 
   compareObjects(o1: any, o2: any): boolean {
-    return o1 && o2 ? o1.id === o2.id : o1 === o2;
+    if (o1 && o2) {
+      return o1.id === o2.id;
+    }
+    return o1 === o2;
   }
 }
